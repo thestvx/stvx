@@ -1,1 +1,105 @@
+:root {
+    /* تحديد تدرجات البنفسجي */
+    --purple-dark: #2A0A4A;   /* أساس داكن للخلفية */
+    --purple-medium: #6A1B9A; /* لون أساسي للعناصر */
+    --purple-light: #9C27B0;  /* للتمييز والتأثيرات */
+    --text-color: #E0E0E0;    /* لون النص الفاتح */
+}
 
+/* --------------------------------- */
+/* تأثير الحركة للخلفية الفنية */
+/* --------------------------------- */
+@keyframes purpleShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* التنسيقات الأساسية وتطبيق الخلفية الفنية */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-color);
+    min-height: 100vh;
+    overflow-x: hidden; /* لمنع شريط التمرير الأفقي */
+
+    /* خلفية فنية بتدرجات بنفسجية */
+    background: linear-gradient(135deg, var(--purple-dark) 0%, #4A148C 50%, #880E4F 100%);
+    
+    /* تطبيق حركة الخلفية */
+    background-size: 400% 400%; /* توسيع حجم الخلفية لتمكين الحركة */
+    animation: purpleShift 20s ease infinite; /* تطبيق الحركة ببطء */
+}
+
+/* --------------------------------- */
+/* تنسيق قائمة التنقل */
+/* --------------------------------- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    background-color: rgba(0, 0, 0, 0.3); /* خلفية شبه شفافة */
+    backdrop-filter: blur(5px); /* تأثير ضبابي خفيف */
+    z-index: 1000; /* لضمان ظهور القائمة فوق المحتوى */
+}
+
+/* --------------------------------- */
+/* تنسيق الشعار مع الوهج النيوني */
+/* --------------------------------- */
+.logo {
+    font-size: 2.2em; /* زيادة الحجم قليلاً */
+    font-weight: bold;
+    color: var(--text-color); /* لون الشعار أبيض أو رمادي فاتح */
+    letter-spacing: 3px;
+    
+    /* إضافة الوهج (Glow) */
+    text-shadow:
+        0 0 10px var(--purple-light), /* وهج خفيف */
+        0 0 20px var(--purple-light), /* وهج متوسط */
+        0 0 40px var(--purple-medium), /* وهج قوي */
+        0 0 80px var(--purple-dark); /* انتشار الوهج الداكن */
+}
+
+.navbar nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    margin-left: 25px; 
+    font-size: 1.1em;
+    transition: color 0.3s;
+}
+
+.navbar nav a:hover {
+    color: var(--purple-light);
+}
+
+/* تنسيق زر اختيار اللغة */
+#language-switcher {
+    padding: 8px 12px;
+    border: 2px solid var(--purple-medium);
+    border-radius: 5px;
+    background-color: var(--purple-dark);
+    color: var(--text-color);
+    cursor: pointer;
+    appearance: none; 
+}
+
+/* تنسيق المحتوى الرئيسي */
+.content {
+    text-align: center;
+    padding-top: 100px;
+    max-width: 800px;
+    margin: auto;
+}
+
+.content h1 {
+    font-size: 3em;
+    color: var(--purple-light);
+}
