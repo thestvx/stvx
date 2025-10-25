@@ -1,37 +1,118 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
+<html lang="ar" dir="rtl"> <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-key="pageTitle">STVX | معرض فنون رقمية</title>
-    <link rel="stylesheet" href="style.css">
+    <title>STVX | منصة عرض المشاريع وطلب الخدمات</title> <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> 
 </head>
 <body>
-
-    <canvas id="three-cursor"></canvas>
-    
-    <header class="navbar">
-        <div class="logo">STVX</div>
-        <nav>
-            <a href="#" data-key="navHome">الرئيسية</a>
-            <a href="#" data-key="navPortfolio">المشاريع</a>
-            <a href="#" data-key="navAbout">عن المنصة</a>
-            <a href="#" data-key="navContact">تواصل</a>
-        </nav>
-
-        <select id="language-switcher">
-            <option value="ar" selected>العربية (AR)</option>
-            <option value="en">English (EN)</option>
-            <option value="fr">Français (FR)</option>
-        </select>
-    </header>
-
-    <main class="content">
-        <h1 data-key="mainHeading">مرحبًا بك في STVX</h1>
-        <p data-key="mainParagraph">منصتك لعرض إبداعات الفوتوشوب والتصاميم الفنية. استكشف اللوغوهات والتصاميم ثلاثية الأبعاد هنا.</p>
-    </main>
-
-    <script src="https://unpkg.com/three@0.158.0/build/three.min.js"></script>
-    <script src="script.js"></script>
+    <div class="container">
+        <aside class="sidebar"> 
+            <div class="logo">
+                <i class="fas fa-magic"></i> 
+                <h2>STVX</h2>
+            </div>
+            <nav class="menu">
+                <ul>
+                    <li class="active">
+                        <a href="#">
+                            <i class="fas fa-home"></i>
+                            <span>الرئيسية</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#projects">
+                            <i class="fas fa-folder-open"></i>
+                            <span>معرض المشاريع</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#request">
+                            <i class="fas fa-pencil-ruler"></i>
+                            <span>اطلب مشروعك</span> </a>
+                    </li>
+                    <li>
+                        <a href="#about">
+                            <i class="fas fa-info-circle"></i>
+                            <span>عن STVX</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#contact">
+                            <i class="fas fa-envelope"></i>
+                            <span>تواصل معنا</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="profile">
+                <div class="avatar">
+                    <img src="your-profile-image.jpg" alt="Profile"> </div>
+                <div class="user-info">
+                    <h3>اسمك (مصمم جرافيك)</h3>
+                    <p>المؤسس/المصمم</p>
+                </div>
+            </div>
+        </aside>
+        
+        <main class="content"> 
+            <header>
+                <h1>مرحباً بك في STVX - فن التصميم الرقمي</h1>
+                <p>استكشف أحدث إبداعات الفوتوشوب واطلب مشروعك الخاص اليوم.</p>
+            </header>
+            
+            <section class="featured-projects" id="projects">
+                <h2>أحدث المشاريع المميزة</h2>
+                <div class="card-container">
+                    <div class="card project-card">
+                        <img src="project-1.jpg" alt="Project 1"> <div class="card-info">
+                            <h3>هوية بصرية لشركة X</h3>
+                            <p>تصميم شعار ومواد تسويقية.</p>
+                            <a href="#" class="view-btn">شاهد التفاصيل</a>
+                        </div>
+                    </div>
+                    <div class="card project-card">
+                        <img src="project-2.jpg" alt="Project 2"> <div class="card-info">
+                            <h3>تصميم منشورات سوشيال ميديا</h3>
+                            <p>حملة إعلانية لمنصة تعليمية.</p>
+                            <a href="#" class="view-btn">شاهد التفاصيل</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="request-form-section" id="request">
+                <h2>اطلب مشروعك الخاص</h2>
+                <form class="request-form">
+                    <div class="form-group">
+                        <label for="name">الاسم الكامل:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">البريد الإلكتروني:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="service">نوع الخدمة المطلوبة:</label>
+                        <select id="service" name="service" required>
+                            <option value="">اختر خدمة...</option>
+                            <option value="logo">تصميم شعار (Logo)</option>
+                            <option value="social">تصاميم سوشيال ميديا</option>
+                            <option value="packaging">تصميم تغليف (Packaging)</option>
+                            <option value="other">أخرى</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="details">وصف تفصيلي للمشروع والأهداف:</label>
+                        <textarea id="details" name="details" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">إرسال الطلب</button>
+                </form>
+            </section>
+            
+        </main>
+    </div>
+    <script src="script.js"></script> 
 </body>
 </html>
