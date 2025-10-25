@@ -1,5 +1,6 @@
-// 1. تحديد النصوص المترجمة
-// هذا هو قلب نظام تغيير اللغة. نستخدم "مفتاح" واحد لكل نص.
+/* --------------------------------- */
+/* 1. تحديد النصوص المترجمة */
+/* --------------------------------- */
 const translations = {
     // المفتاح : {ar: "النص العربي", en: "English Text", fr: "Texte Français"}
     pageTitle: {
@@ -41,7 +42,6 @@ const translations = {
 
 // 2. الدالة المسؤولة عن تغيير اللغة
 function setLanguage(language) {
-    // 1. ترجمة جميع النصوص: نبحث عن جميع العناصر التي لديها خاصية 'data-key'
     document.querySelectorAll('[data-key]').forEach(element => {
         const key = element.getAttribute('data-key');
         if (translations[key] && translations[key][language]) {
@@ -49,28 +49,50 @@ function setLanguage(language) {
         }
     });
 
-    // 2. تحديث خاصية اللغة واتجاه النص في وسم <html>
     const html = document.documentElement;
-    html.lang = language; // تحديث لغة الصفحة
-    html.dir = (language === 'ar') ? 'rtl' : 'ltr'; // تغيير اتجاه النص (Right-to-Left للأفقي)
+    html.lang = language; 
+    html.dir = (language === 'ar') ? 'rtl' : 'ltr'; 
     
-    // 3. تخزين اللغة المختارة في ذاكرة المتصفح
     localStorage.setItem('STVX_language', language);
 }
 
-// 3. ربط الدالة بزر اختيار اللغة
+
+/* --------------------------------- */
+/* 3. تطبيق المنطق عند تحميل الصفحة */
+/* --------------------------------- */
 document.addEventListener('DOMContentLoaded', () => {
     const langSwitcher = document.getElementById('language-switcher');
     
-    // محاولة تحميل اللغة المحفوظة أو استخدام "ar" كإعداد افتراضي
+    // منطق تغيير اللغة
     const savedLanguage = localStorage.getItem('STVX_language') || 'ar';
-    
-    // تطبيق اللغة المحفوظة
     setLanguage(savedLanguage);
-    langSwitcher.value = savedLanguage; // تحديد الخيار الصحيح في القائمة المنسدلة
+    langSwitcher.value = savedLanguage;
 
-    // إضافة مستمع حدث لتغيير اللغة عند اختيار خيار جديد
     langSwitcher.addEventListener('change', (event) => {
         setLanguage(event.target.value);
+    });
+    
+    /* --------------------------------- */
+    /* 4. منطق المؤشر المخصص (Custom Cursor Logic) */
+    /* --------------------------------- */
+    const cursor = document.getElementById('custom-cursor');
+    // العناصر التي ستؤدي إلى تغيير شكل المؤشر
+    const links = document.querySelectorAll('a, button, select'); 
+    
+    // 1. تتبّع حركة المؤشر
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+    });
+
+    // 2. تفعيل تأثير "النمو" عند التحويم
+    links.forEach(link => {
+        link.addEventListener('mouseenter', () => {
+            document.body.classList.add('link-grow');
+        });
+
+        link.addEventListener('mouseleave', () => {
+            document.body.classList.remove('link-grow');
+        });
     });
 });
