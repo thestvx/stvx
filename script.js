@@ -1,38 +1,40 @@
 document.addEventListener('DOMContentLoaded', () => {
     // ----------------------------------------------------
-    // I. وظيفة تفاعل الشريط الجانبي (الميزة الأصلية)
+    // I. وظيفة تفاعل الشريط الجانبي
     // ----------------------------------------------------
     const menuItems = document.querySelectorAll('.menu li');
-    
+    // الحصول على اسم الملف الحالي لتعيين العنصر النشط
+    const currentPath = window.location.pathname.split('/').pop() || 'index.html'; 
+
+    // 1. تفعيل حالة النشاط بناءً على اسم الملف
     menuItems.forEach(item => {
-        // 1. تفعيل حالة النشاط (Active) وتأثير النقر
-        item.addEventListener('click', (e) => {
-            menuItems.forEach(i => i.classList.remove('active'));
-            item.classList.add('active');
+        const link = item.querySelector('a');
+        if (link) {
+            const linkPath = link.getAttribute('href');
+             // مقارنة اسم الملف (مثل 'index.html')
+            if (linkPath === currentPath) {
+                item.classList.add('active');
+            } else {
+                item.classList.remove('active');
+            }
+        }
+    });
+
+    // 2. تفعيل تأثير النقر (Scale) وتأثير الضوء (Liquid Highlight)
+    menuItems.forEach(item => {
+        item.addEventListener('click', () => {
             
             const icon = item.querySelector('i');
-            icon.style.transform = 'scale(1.2)';
-            setTimeout(() => {
-                icon.style.transform = 'scale(1)';
-            }, 200);
-
-            // 2. تفعيل التمرير إلى القسم المطابق في الصفحة (Self-Navigation)
-            const targetId = item.querySelector('a').getAttribute('href');
-            if (targetId && targetId.startsWith('#')) {
-                e.preventDefault(); // منع سلوك الرابط الافتراضي
-                
-                // البحث عن القسم المستهدف في محتوى الصفحة
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    // التمرير السلس إلى القسم
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
-                }
+            if(icon) {
+                icon.style.transform = 'scale(1.2)';
+                setTimeout(() => {
+                    icon.style.transform = 'scale(1)';
+                }, 200);
             }
         });
         
-        // 3. تأثير الضوء (Liquid Highlight) عند مرور الفأرة
+        // تأثير الضوء (Liquid Highlight) عند مرور الفأرة
         item.addEventListener('mousemove', (e) => {
-             // إزالة أي Highlight سابق قبل إنشاء واحد جديد
             const existingHighlight = item.querySelector('.highlight');
             if (existingHighlight) {
                 existingHighlight.remove();
@@ -43,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
             highlight.style.cssText = `
                 position: absolute;
                 top: 0;
-                right: 0; /* تم تعديله لـ RTL */
+                right: 0; 
                 width: 100%;
                 height: 100%;
                 border-radius: 16px;
@@ -55,7 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
             
             item.appendChild(highlight);
             
-            // إزالة الضوء بعد فترة قصيرة
             setTimeout(() => {
                 highlight.style.opacity = '0';
                 setTimeout(() => {
@@ -76,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ----------------------------------------------------
-    // II. وظيفة تأثير بطاقات المشاريع ثلاثية الأبعاد (3D Tilt) (الميزة الأصلية)
+    // II. وظيفة تأثير بطاقات المشاريع ثلاثية الأبعاد (3D Tilt) 
     // ----------------------------------------------------
     const cards = document.querySelectorAll('.card');
     cards.forEach(card => {
@@ -85,76 +86,56 @@ document.addEventListener('DOMContentLoaded', () => {
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
             
-            // ضبط زوايا الدوران (Rotate)
-            const rotateY = (x / rect.width - 0.5) * -10; // تم عكس القيمة ليتناسب مع RTL
+            const rotateY = (x / rect.width - 0.5) * -10; 
             const rotateX = (y / rect.height - 0.5) * 10;
             
             card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
         });
         
         card.addEventListener('mouseleave', () => {
-            // إعادة البطاقة إلى وضعها الأصلي
             card.style.transform = 'translateY(0) scale(1)';
             card.style.transition = 'transform 0.5s ease';
         });
     });
     
     // ----------------------------------------------------
-    // III. وظيفة معالجة نموذج طلب المشروع (Form Submission) (الإضافة الجديدة)
+    // III. وظيفة معالجة نموذج طلب المشروع (Form Submission) 
     // ----------------------------------------------------
-    const requestForm = document.querySelector('.request-form');
+    // نستهدف نموذج طلب الخدمة فقط (يجب ألا يؤثر على نماذج Firebase)
+    const requestForm = document.querySelector('.request-form:not(#loginForm):not(#signupForm)');
     
     if (requestForm) {
         requestForm.addEventListener('submit', function(e) {
-            e.preventDefault(); // منع الإرسال الافتراضي للصفحة
+            e.preventDefault(); 
 
-            // * ملاحظة: في بيئة حقيقية، ستحتاج إلى إرسال هذه البيانات إلى خادم
-            // * باستخدام تقنيات مثل AJAX/Fetch أو استخدام خدمة خارجية مثل Formspree أو Netlify Forms.
-            // * سنكتفي هنا بإظهار رسالة نجاح بسيطة وتفريغ الحقول.
-            
-            
-            // 1. جمع البيانات (يمكنك استخدامها لإرسال بريد إلكتروني في الكواليس)
             const formData = new FormData(requestForm);
             const data = {};
             formData.forEach((value, key) => { data[key] = value });
 
             console.log('بيانات الطلب المرسلة:', data);
 
-            // 2. إظهار رسالة نجاح للعميل
             alert('✅ تم استلام طلبك بنجاح! سيتم التواصل معك قريباً عبر البريد الإلكتروني.');
             
-            // 3. تفريغ النموذج
             requestForm.reset();
-
-            // 4. (ميزة إضافية) تفعيل زر "اطلب مشروعك" في القائمة عند إرسال الطلب بنجاح
-            const requestItem = document.querySelector('a[href="#request"]').closest('li');
-            if (requestItem) {
-                menuItems.forEach(i => i.classList.remove('active'));
-                requestItem.classList.add('active');
-            }
         });
     }
 
-});
+    // ----------------------------------------------------
+    // IV. وظيفة مؤثر ظهور العناصر أثناء التمرير (Reveal on Scroll)
+    // ----------------------------------------------------
+    const sections = document.querySelectorAll('section, header');
 
-// ----------------------------------------------------
-// IV. وظيفة إضافية: مؤثر ظهور العناصر أثناء التمرير (Reveal on Scroll)
-// ----------------------------------------------------
-// هذا المؤثر شائع جداً في المواقع العالمية ويضيف لمسة احترافية
-// سنضيف CSS بسيط لهذه الوظيفة لاحقًا
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in');
+                observer.unobserve(entry.target); 
+            }
+        });
+    }, { threshold: 0.1 }); 
 
-const sections = document.querySelectorAll('section, header');
-
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('fade-in');
-            observer.unobserve(entry.target); // إيقاف المراقبة بعد ظهور العنصر
-        }
+    sections.forEach(section => {
+        section.classList.add('hidden-section'); 
+        observer.observe(section);
     });
-}, { threshold: 0.1 }); // تفعيل الظهور عندما يظهر 10% من العنصر
-
-sections.forEach(section => {
-    section.classList.add('hidden-section'); // إضافة كلاس الإخفاء الأولي
-    observer.observe(section);
 });
