@@ -1,119 +1,393 @@
+@import url('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600&display=swap');
+
+/* ملاحظة: لا يدعم خط SF Pro اللغة العربية.
+   سنعتمد على الخطوط العربية الافتراضية، أو يمكنك استبداله بخط عربي مثل 'Tajawal' أو 'Cairo' إذا أردت. */
+
 :root {
-    /* تحديد تدرجات البنفسجي */
-    --purple-dark: #2A0A4A;   /* أساس داكن للخلفية */
-    --purple-medium: #6A1B9A; /* لون أساسي للعناصر */
-    --purple-light: #9C27B0;  /* للتمييز والتأثيرات */
-    --text-color: #E0E0E0;    /* لون النص الفاتح */
+    --primary-color: #0066ff;
+    --sidebar-width: 280px;
+    --sidebar-collapsed-width: 80px;
+    --transition-speed: 0.3s;
 }
 
-/* --------------------------------- */
-/* تأثير الحركة للخلفية الفنية (Keyframes) */
-/* --------------------------------- */
-@keyframes purpleShift {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-/* التنسيقات الأساسية وتطبيق الخلفية الفنية */
-body {
+* {
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: var(--text-color);
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'SF Pro Display', 'Arial', sans-serif; /* تم إضافة 'Arial' كخيار احتياطي للعربية */
+    background: linear-gradient(135deg, #2a2a72 0%, #009ffd 74%);
     min-height: 100vh;
-    overflow-x: hidden;
-    cursor: none; /* إخفاء المؤشر الافتراضي */
-
-    /* خلفية فنية بتدرجات بنفسجية */
-    background: linear-gradient(135deg, var(--purple-dark) 0%, #4A148C 50%, #880E4F 100%);
-    
-    /* تطبيق حركة الخلفية */
-    background-size: 400% 400%;
-    animation: purpleShift 20s ease infinite;
-}
-
-/* --------------------------------- */
-/* تنسيق قائمة التنقل */
-/* --------------------------------- */
-.navbar {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 15px 50px;
-    background-color: rgba(0, 0, 0, 0.3); 
-    backdrop-filter: blur(5px); 
-    z-index: 1000;
+    justify-content: center;
+    color: #fff;
+    overflow: hidden;
 }
 
-/* --------------------------------- */
-/* تنسيق الشعار مع الوهج النيوني */
-/* --------------------------------- */
+.container {
+    display: flex;
+    width: 90%;
+    height: 85vh;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    overflow: hidden;
+    /* تعيين الاتجاه الافتراضي للمحتوى الرئيسي لـ RTL */
+    direction: rtl; 
+}
+
+/* -------------------- تعديلات الشريط الجانبي -------------------- */
+.sidebar {
+    width: var(--sidebar-width);
+    height: 100%;
+    padding: 30px 15px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    /* تغيير مكان الحد الفاصل ليناسب RTL */
+    border-left: 1px solid rgba(255, 255, 255, 0.08); 
+    border-right: none; 
+    display: flex;
+    flex-direction: column;
+    transition: width var(--transition-speed) ease;
+    position: relative;
+}
+
 .logo {
-    font-size: 2.2em; 
-    font-weight: bold;
-    color: var(--text-color); 
-    letter-spacing: 3px;
-    
-    /* إضافة الوهج (Glow) */
-    text-shadow:
-        0 0 10px var(--purple-light),
-        0 0 20px var(--purple-light),
-        0 0 40px var(--purple-medium),
-        0 0 80px var(--purple-dark);
-}
-
-.navbar nav a {
-    color: var(--text-color);
-    text-decoration: none;
-    margin-left: 25px; 
-    font-size: 1.1em;
-    transition: color 0.3s;
-}
-
-.navbar nav a:hover {
-    color: var(--purple-light);
-}
-
-/* تنسيق زر اختيار اللغة */
-#language-switcher {
-    padding: 8px 12px;
-    border: 2px solid var(--purple-medium);
-    border-radius: 5px;
-    background-color: var(--purple-dark);
-    color: var(--text-color);
-    cursor: pointer;
-    appearance: none; 
-}
-
-/* تنسيق المحتوى الرئيسي */
-.content {
     text-align: center;
-    padding-top: 100px;
-    max-width: 800px;
-    margin: auto;
+    margin-bottom: 40px;
 }
 
-.content h1 {
-    font-size: 3em;
-    color: var(--purple-light);
+.logo i {
+    font-size: 36px;
+    color: #fff;
+    opacity: 0.9;
 }
 
-/* --------------------------------- */
-/* 3. تنسيق مؤشر 3D Canvas */
-/* --------------------------------- */
-#three-cursor {
-    position: fixed; 
-    top: 0;
-    left: 0;
+/* تنسيق اسم STVX */
+.logo h2 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu li {
+    margin-bottom: 8px;
+    border-radius: 16px;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.menu li:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.menu li.active {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* تعديل موقع الخط الجانبي في حالة التفعيل ليناسب RTL */
+.menu li.active::before {
+    content: '';
+    position: absolute;
+    right: -15px; /* تم تعديله من left إلى right */
+    left: auto; /* لضمان عدم وجود تداخل */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 20px;
+    background: var(--primary-color);
+    border-radius: 4px 0 0 4px; /* تم تعديل الزوايا */
+}
+
+.menu a {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    padding: 12px 16px;
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+/* تعديل الهامش لاتجاه الأيقونات في RTL */
+.menu a i {
+    font-size: 20px;
+    margin-left: 14px; 
+    margin-right: 0; 
+    min-width: 22px;
+    text-align: center;
+}
+
+.profile {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* تعديل الهامش ليناسب RTL */
+.avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-left: 12px;
+    margin-right: 0;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.avatar img {
     width: 100%;
     height: 100%;
-    pointer-events: none;
-    z-index: 9999;
+    object-fit: cover;
+}
+/* -------------------- نهاية تعديلات الشريط الجانبي -------------------- */
+
+
+/* -------------------- تنسيق المحتوى الرئيسي -------------------- */
+.content {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto;
+}
+
+header {
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+header p {
+    font-size: 16px;
+    opacity: 0.8;
+}
+
+/* -------------------- تنسيق المشاريع والبطاقات (Project Cards) -------------------- */
+.featured-projects h2, .request-form-section h2 {
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    padding-top: 15px; /* مسافة أعلى لتبدو منفصلة عن الهيدر */
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* زيادة حجم البطاقة قليلاً */
+    gap: 24px;
+    margin-top: 30px;
+}
+
+.card {
+    /* الخصائص الأصلية للـ Glassmorphism */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    /* تغيير display ليتناسب مع بطاقة المشروع (Project Card) */
+    display: block; 
+    text-align: right; /* محاذاة النص لليمين */
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* تنسيق صور المشاريع */
+.project-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 14px;
+    margin-bottom: 15px;
+}
+
+.project-card .card-info h3 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.project-card .card-info p {
+    font-size: 14px;
+    opacity: 0.9;
+    margin-bottom: 15px;
+}
+
+.view-btn {
+    display: inline-block;
+    padding: 8px 15px;
+    background: var(--primary-color);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background 0.3s ease;
+}
+
+.view-btn:hover {
+    background: #004ecc;
+}
+
+/* -------------------- تنسيق نموذج طلب المشروع (Request Form) -------------------- */
+.request-form-section {
+    margin-top: 40px;
+}
+
+.request-form {
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.1); /* نفس خلفية البطاقات */
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    opacity: 0.9;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    
+    /* مظهر زجاجي للحقول */
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    font-size: 16px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-color);
+}
+
+/* تنسيق نص Placeholder داخل الحقول */
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* تنسيق حقل الاختيار (Select) ليتناسق مع التصميم الغامق */
+.form-group select option {
+    background-color: #1a1a40; /* خلفية داكنة لخيار القائمة */
+    color: #fff;
+}
+
+.submit-btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.1s ease;
+}
+
+.submit-btn:hover {
+    background: #004ecc;
+}
+
+.submit-btn:active {
+    transform: scale(0.99);
+}
+
+/* -------------------- نهاية تنسيق نموذج طلب المشروع -------------------- */
+
+
+/* -------------------- تعديلات متجاوبة (Responsive) -------------------- */
+
+@media (max-width: 1024px) {
+    /* تعديل لاتجاه القوائم المخفية في الشاشات الأصغر */
+    .sidebar {
+        width: var(--sidebar-collapsed-width);
+    }
+    
+    .menu a span {
+        display: none;
+    }
+    
+    .menu a i {
+        margin-left: 0; /* إلغاء الهامش عند إخفاء النص */
+    }
+    
+    .user-info {
+        display: none;
+    }
+    
+    .profile {
+        justify-content: center;
+    }
+    
+    .avatar {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    
+    .content {
+        padding: 30px;
+    }
+    
+    .card-container {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* تعديل حجم البطاقة في الشاشات الأصغر */
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        height: 90vh;
+        /* عند الشاشات الصغيرة يمكن إخفاء الشريط الجانبي تماماً أو جعله شريط تنقل علوي */
+    }
+    
+    .sidebar {
+        /* للحفاظ على الشريط الجانبي في هذا المثال، لكن يمكن إخفائه بالكامل */
+        width: 60px; 
+    }
+    
+    .card-container {
+        grid-template-columns: 1fr;
+    }
 }
