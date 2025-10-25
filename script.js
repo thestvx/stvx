@@ -58,12 +58,12 @@ function setLanguage(language) {
 
 
 /* --------------------------------- */
-/* 3. تطبيق منطق اللغة عند تحميل الصفحة */
+/* 3. تطبيق المنطق عند تحميل الصفحة (اللغة والمؤشر 3D) */
 /* --------------------------------- */
 document.addEventListener('DOMContentLoaded', () => {
+    // ********* منطق تغيير اللغة *********
     const langSwitcher = document.getElementById('language-switcher');
     
-    // منطق تغيير اللغة
     const savedLanguage = localStorage.getItem('STVX_language') || 'ar';
     setLanguage(savedLanguage);
     langSwitcher.value = savedLanguage;
@@ -71,15 +71,15 @@ document.addEventListener('DOMContentLoaded', () => {
     langSwitcher.addEventListener('change', (event) => {
         setLanguage(event.target.value);
     });
-});
-
-/* --------------------------------- */
-/* 4. منطق مؤشر 3D Fluid Glass باستخدام THREE.js */
-/* --------------------------------- */
-document.addEventListener('DOMContentLoaded', () => {
-    // التأكد من أن مكتبة THREE.js قد تم تحميلها
+    
+    
+    /* --------------------------------- */
+    /* 4. منطق مؤشر 3D Fluid Glass باستخدام THREE.js */
+    /* --------------------------------- */
+    
+    // التأكد من أن مكتبة THREE.js قد تم تحميلها (ستكون مُعرّفة بعد التعديل في index.html)
     if (typeof THREE === 'undefined') {
-        console.error("THREE.js library is not loaded. Please check index.html script tag.");
+        console.error("THREE.js library is not loaded. Cannot initialize 3D cursor.");
         return;
     }
     
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     camera.position.z = 5;
 
-    const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true }); // antialias لتحسين جودة الحواف
+    const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true }); 
     renderer.setSize(window.innerWidth, window.innerHeight);
 
     // ********** إنشاء الجسم الزجاجي (Fluid Glass) **********
@@ -124,13 +124,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // ********** منطق حركة المؤشر والتتبع **********
     const targetPosition = new THREE.Vector3(0, 0, 0); 
     
-    // عند حركة الفأرة
     document.addEventListener('mousemove', (event) => {
-        // تحويل إحداثيات الفأرة (Screen Coordinates) إلى إحداثيات 3D 
         const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
         const mouseY = - (event.clientY / window.innerHeight) * 2 + 1;
 
-        // إسقاط الإحداثيات على المستوى القريب من الكاميرا
         targetPosition.set(mouseX * camera.aspect * (camera.position.z * 0.4), mouseY * (camera.position.z * 0.4), 0);
     });
 
@@ -139,17 +136,14 @@ document.addEventListener('DOMContentLoaded', () => {
     function animate() {
         requestAnimationFrame(animate);
 
-        // جعل المؤشر يتبع موقع الفأرة بسلاسة (Easing)
         glassCursor.position.lerp(targetPosition, 0.1); 
         
-        // إضافة دوران بسيط لجعله يبدو "سائلاً" أو ديناميكياً
         glassCursor.rotation.x += 0.005;
         glassCursor.rotation.y += 0.005;
 
         renderer.render(scene, camera);
     }
 
-    // بدء حلقة الرسم
     animate();
 
     // ********** الاستجابة لتغيير حجم الشاشة **********
