@@ -7,7 +7,7 @@
 }
 
 /* --------------------------------- */
-/* تأثير الحركة للخلفية الفنية */
+/* تأثير الحركة للخلفية الفنية (Keyframes) */
 /* --------------------------------- */
 @keyframes purpleShift {
     0% {
@@ -28,14 +28,15 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: var(--text-color);
     min-height: 100vh;
-    overflow-x: hidden; /* لمنع شريط التمرير الأفقي */
+    overflow-x: hidden;
+    cursor: none; /* إخفاء المؤشر الافتراضي */
 
     /* خلفية فنية بتدرجات بنفسجية */
     background: linear-gradient(135deg, var(--purple-dark) 0%, #4A148C 50%, #880E4F 100%);
     
     /* تطبيق حركة الخلفية */
-    background-size: 400% 400%; /* توسيع حجم الخلفية لتمكين الحركة */
-    animation: purpleShift 20s ease infinite; /* تطبيق الحركة ببطء */
+    background-size: 400% 400%;
+    animation: purpleShift 20s ease infinite;
 }
 
 /* --------------------------------- */
@@ -46,26 +47,26 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 15px 50px;
-    background-color: rgba(0, 0, 0, 0.3); /* خلفية شبه شفافة */
-    backdrop-filter: blur(5px); /* تأثير ضبابي خفيف */
-    z-index: 1000; /* لضمان ظهور القائمة فوق المحتوى */
+    background-color: rgba(0, 0, 0, 0.3); 
+    backdrop-filter: blur(5px); 
+    z-index: 1000;
 }
 
 /* --------------------------------- */
 /* تنسيق الشعار مع الوهج النيوني */
 /* --------------------------------- */
 .logo {
-    font-size: 2.2em; /* زيادة الحجم قليلاً */
+    font-size: 2.2em; 
     font-weight: bold;
-    color: var(--text-color); /* لون الشعار أبيض أو رمادي فاتح */
+    color: var(--text-color); 
     letter-spacing: 3px;
     
     /* إضافة الوهج (Glow) */
     text-shadow:
-        0 0 10px var(--purple-light), /* وهج خفيف */
-        0 0 20px var(--purple-light), /* وهج متوسط */
-        0 0 40px var(--purple-medium), /* وهج قوي */
-        0 0 80px var(--purple-dark); /* انتشار الوهج الداكن */
+        0 0 10px var(--purple-light),
+        0 0 20px var(--purple-light),
+        0 0 40px var(--purple-medium),
+        0 0 80px var(--purple-dark);
 }
 
 .navbar nav a {
@@ -102,4 +103,29 @@ body {
 .content h1 {
     font-size: 3em;
     color: var(--purple-light);
+}
+
+/* --------------------------------- */
+/* تنسيق المؤشر المخصص (Custom Cursor) */
+/* --------------------------------- */
+#custom-cursor {
+    width: 25px;
+    height: 25px;
+    border: 2px solid var(--purple-light); 
+    border-radius: 50%; 
+    position: fixed; 
+    pointer-events: none;
+    transform: translate(-50%, -50%); 
+    z-index: 9999; 
+    transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s; 
+    
+    box-shadow: 0 0 10px var(--purple-light), 0 0 20px rgba(156, 39, 176, 0.5); 
+}
+
+/* تأثير التكبير عند التحويم (يتم تفعيله بالـ JavaScript) */
+.link-grow #custom-cursor {
+    width: 40px;
+    height: 40px;
+    background-color: var(--purple-light);
+    opacity: 0.3;
 }
