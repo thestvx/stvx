@@ -391,3 +391,19 @@ header p {
         grid-template-columns: 1fr;
     }
 }
+
+/* -------------------- IV. مؤثر الظهور السلس (Reveal on Scroll CSS) (الإضافة المطلوبة) -------------------- */
+
+.hidden-section {
+    /* الحالة الأولية للعنصر: مخفي ومزاح للأسفل قليلاً */
+    opacity: 0;
+    transform: translateY(30px);
+    /* سرعة الانتقال لتطبيق التأثير */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; 
+}
+
+.fade-in {
+    /* الحالة النهائية عند الظهور: شفافية كاملة وبدون إزاحة */
+    opacity: 1;
+    transform: translateY(0);
+}
