@@ -2,7 +2,6 @@
 @font-face {
     font-family: 'Expo-Bold';
     src: url('./fonts/Expo-Arabic-Bold.ttf') format('truetype');
-    /* تأكد من أن المسار "./fonts/" صحيح */
     font-weight: 700;
     font-style: normal;
     font-display: swap; 
@@ -11,14 +10,12 @@
 @font-face {
     font-family: 'Al-Jazeera-Regular';
     src: url('./fonts/Al-Jazeera-Arabic-Regular.ttf') format('truetype');
-    /* تأكد من أن المسار "./fonts/" صحيح */
     font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
 
 /* -------------------- II. الإعدادات الأساسية -------------------- */
-
 :root {
     --primary-color: #0066ff;
     --sidebar-width: 280px;
@@ -41,9 +38,11 @@ body {
     align-items: center;
     justify-content: center;
     color: #fff;
-    overflow: hidden;
+    overflow: hidden; /* تم تغييرها في .auth-body */
+    direction: rtl; 
 }
 
+/* تنسيق الـ Container للصفحات التي تحتوي على الشريط الجانبي */
 .container {
     display: flex;
     width: 90%;
@@ -237,7 +236,6 @@ header p {
 }
 
 .card:hover {
-    transform: translateY(-5px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
@@ -358,6 +356,43 @@ header p {
     transform: scale(0.99);
 }
 
+/* -------------------- تنسيق صفحات المصادقة (Login/Signup) -------------------- */
+.auth-body {
+    background: linear-gradient(135deg, #2a2a72 0%, #009ffd 74%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    overflow-y: auto; 
+    overflow-x: hidden;
+    direction: rtl; 
+}
+
+.auth-card {
+    width: 400px;
+    max-width: 90%;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    text-align: right;
+}
+
+.auth-card h2 {
+    font-family: 'Expo-Bold', sans-serif; 
+    margin-bottom: 25px;
+    font-size: 28px;
+    text-align: center;
+}
+
+.auth-card a {
+    text-decoration: none;
+}
+
 /* -------------------- تعديلات متجاوبة (Responsive) -------------------- */
 
 @media (max-width: 1024px) {
@@ -407,6 +442,10 @@ header p {
     
     .card-container {
         grid-template-columns: 1fr;
+    }
+
+    .auth-card {
+        padding: 25px;
     }
 }
 
