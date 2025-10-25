@@ -58,7 +58,7 @@ function setLanguage(language) {
 
 
 /* --------------------------------- */
-/* 3. تطبيق المنطق عند تحميل الصفحة */
+/* 3. تطبيق منطق اللغة عند تحميل الصفحة */
 /* --------------------------------- */
 document.addEventListener('DOMContentLoaded', () => {
     const langSwitcher = document.getElementById('language-switcher');
@@ -71,28 +71,91 @@ document.addEventListener('DOMContentLoaded', () => {
     langSwitcher.addEventListener('change', (event) => {
         setLanguage(event.target.value);
     });
+});
+
+/* --------------------------------- */
+/* 4. منطق مؤشر 3D Fluid Glass باستخدام THREE.js */
+/* --------------------------------- */
+document.addEventListener('DOMContentLoaded', () => {
+    // التأكد من أن مكتبة THREE.js قد تم تحميلها
+    if (typeof THREE === 'undefined') {
+        console.error("THREE.js library is not loaded. Please check index.html script tag.");
+        return;
+    }
     
-    /* --------------------------------- */
-    /* 4. منطق المؤشر المخصص (Custom Cursor Logic) */
-    /* --------------------------------- */
-    const cursor = document.getElementById('custom-cursor');
-    // العناصر التي ستؤدي إلى تغيير شكل المؤشر
-    const links = document.querySelectorAll('a, button, select'); 
+    const canvas = document.getElementById('three-cursor');
     
-    // 1. تتبّع حركة المؤشر
-    document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
+    // ********** إعداد المشهد الأساسي **********
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 5;
+
+    const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true }); // antialias لتحسين جودة الحواف
+    renderer.setSize(window.innerWidth, window.innerHeight);
+
+    // ********** إنشاء الجسم الزجاجي (Fluid Glass) **********
+    
+    const geometry = new THREE.SphereGeometry(0.3, 32, 32); 
+
+    const material = new THREE.MeshPhysicalMaterial({
+        color: 0x9c27b0, // بنفسجي فاتح
+        metalness: 0.1,
+        roughness: 0,
+        ior: 1.5,
+        transmission: 1.0, 
+        transparent: true,
+        opacity: 0.8,
+        reflectivity: 0.2,
+        clearcoat: 1.0,
+        clearcoatRoughness: 0.1
     });
 
-    // 2. تفعيل تأثير "النمو" عند التحويم
-    links.forEach(link => {
-        link.addEventListener('mouseenter', () => {
-            document.body.classList.add('link-grow');
-        });
+    const glassCursor = new THREE.Mesh(geometry, material);
+    scene.add(glassCursor);
 
-        link.addEventListener('mouseleave', () => {
-            document.body.classList.remove('link-grow');
-        });
+    // ********** الإضاءة **********
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    scene.add(ambientLight);
+    
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1.5);
+    directionalLight.position.set(5, 5, 5);
+    scene.add(directionalLight);
+    
+    // ********** منطق حركة المؤشر والتتبع **********
+    const targetPosition = new THREE.Vector3(0, 0, 0); 
+    
+    // عند حركة الفأرة
+    document.addEventListener('mousemove', (event) => {
+        // تحويل إحداثيات الفأرة (Screen Coordinates) إلى إحداثيات 3D 
+        const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+        const mouseY = - (event.clientY / window.innerHeight) * 2 + 1;
+
+        // إسقاط الإحداثيات على المستوى القريب من الكاميرا
+        targetPosition.set(mouseX * camera.aspect * (camera.position.z * 0.4), mouseY * (camera.position.z * 0.4), 0);
+    });
+
+    // ********** حلقة الرسم (Animation Loop) **********
+
+    function animate() {
+        requestAnimationFrame(animate);
+
+        // جعل المؤشر يتبع موقع الفأرة بسلاسة (Easing)
+        glassCursor.position.lerp(targetPosition, 0.1); 
+        
+        // إضافة دوران بسيط لجعله يبدو "سائلاً" أو ديناميكياً
+        glassCursor.rotation.x += 0.005;
+        glassCursor.rotation.y += 0.005;
+
+        renderer.render(scene, camera);
+    }
+
+    // بدء حلقة الرسم
+    animate();
+
+    // ********** الاستجابة لتغيير حجم الشاشة **********
+    window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
     });
 });
