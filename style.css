@@ -27,7 +27,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* تحسين الأداء للأنيميشن */
     will-change: transform, opacity; 
 }
 
@@ -50,9 +49,26 @@ a:hover {
     color: var(--accent-color);
 }
 
+/* 🛑 تنسيق خلفية الحرير (Silk Background) */
+.silk-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -10; /* يجب أن يكون خلف كل العناصر */
+    display: block;
+    opacity: 0.8; 
+}
+
+/* تأكد أن كل المحتوى يظهر فوق الخلفية */
+body > *:not(.silk-background) {
+    position: relative;
+    z-index: 1; 
+}
+
 /* -------------------- KEYFRAMES - تعريفات الحركات الرئيسية -------------------- */
 
-/* Fade In Up */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -64,13 +80,11 @@ a:hover {
     }
 }
 
-/* Fade In */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
 }
 
-/* Slide In Right */
 @keyframes slideInRight {
     from {
         opacity: 0;
@@ -82,7 +96,6 @@ a:hover {
     }
 }
 
-/* Scale Up */
 @keyframes scaleUp {
     from {
         opacity: 0;
@@ -94,7 +107,6 @@ a:hover {
     }
 }
 
-/* Pulse (للأزرار أو العناصر المميزة) */
 @keyframes pulse {
     0% { transform: scale(1); }
     50% { transform: scale(1.02); }
@@ -107,7 +119,7 @@ a:hover {
 }
 
 .animate-fade-in-up {
-    opacity: 0; /* مخفي افتراضياً ليظهر بالأنيميشن */
+    opacity: 0; 
     animation: fadeInUp 0.8s var(--transition-speed) forwards;
 }
 
@@ -121,7 +133,6 @@ a:hover {
     animation: scaleUp 0.8s var(--transition-speed) forwards;
 }
 
-/* تأخير الأنيميشن للعناصر المتعددة */
 .delay-1 { animation-delay: calc(var(--delay-factor) * 1); }
 .delay-2 { animation-delay: calc(var(--delay-factor) * 2); }
 .delay-3 { animation-delay: calc(var(--delay-factor) * 3); }
@@ -141,19 +152,18 @@ a:hover {
     top: 0;
     z-index: 1000;
     box-shadow: var(--shadow-dark);
-    animation: fadeIn 0.8s ease-out backwards; /* يظهر الهيدر مباشرة */
+    animation: fadeIn 0.8s ease-out backwards; 
 }
 
-/* تنسيق الشعار كصورة */
 .stv-logo {
-    height: 35px; /* ارتفاع الشعار */
+    height: 35px; 
     width: auto;
     transition: transform var(--transition-speed);
 }
 
 .stv-logo:hover {
-    transform: scale(1.1); /* تكبير أكبر قليلاً عند التمرير */
-    animation: pulse 1s infinite; /* نبض خفيف عند التمرير */
+    transform: scale(1.1); 
+    animation: pulse 1s infinite; 
 }
 
 .logo a {
@@ -203,7 +213,7 @@ a:hover {
     font-size: 0.9rem;
     font-weight: 600;
     transition: all var(--transition-speed);
-    overflow: hidden; /* لإخفاء التأثير الذي يخرج عن الحد */
+    overflow: hidden; 
     position: relative;
     z-index: 1;
 }
@@ -226,7 +236,7 @@ a:hover {
 
 .auth-buttons a:hover {
     color: var(--text-dark);
-    box-shadow: 0 0 15px rgba(255, 199, 44, 0.5); /* ظل ذهبي عند التمرير */
+    box-shadow: 0 0 15px rgba(255, 199, 44, 0.5); 
 }
 
 
@@ -238,28 +248,28 @@ a:hover {
     align-items: center;
     justify-content: center;
     text-align: center;
-    background-color: #f8f8f8; 
+    /* إزالة الخلفية هنا لكي يظهر تأثير Silk */
+    background-color: transparent !important; 
+    background-image: none !important;
     background-size: cover;
     background-position: center;
-    /* خلفية متغيرة أو بارالكس */
-    background-image: url('images/hero-work-sample.jpg'); /* تأكد من وجود هذه الصورة */
     animation: fadeIn 1.5s ease-out forwards;
 }
 
 .hero-content {
-    background: rgba(0, 0, 0, 0.5); /* زيادة الشفافية قليلاً */
+    background: rgba(0, 0, 0, 0.5); 
     padding: 30px 60px;
     color: var(--text-light);
-    max-width: 900px; /* زيادة عرض المحتوى */
+    max-width: 900px; 
     border-radius: 8px;
     box-shadow: var(--shadow-dark);
     animation: scaleUp 1s var(--transition-speed) forwards;
-    animation-delay: 0.5s; /* تأخير بسيط لظهوره بعد الخلفية */
+    animation-delay: 0.5s; 
 }
 
 .hero-content h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 4.5rem; /* حجم أكبر */
+    font-size: 4.5rem; 
     margin-bottom: 15px;
     color: var(--accent-color);
     animation: fadeInUp 1s var(--transition-speed) forwards;
@@ -267,7 +277,7 @@ a:hover {
 }
 
 .hero-content p {
-    font-size: 1.5rem; /* حجم أكبر */
+    font-size: 1.5rem; 
     font-weight: 400;
     margin-bottom: 40px;
     animation: fadeInUp 1s var(--transition-speed) forwards;
@@ -277,7 +287,7 @@ a:hover {
 .cta-button {
     background-color: var(--accent-color);
     color: var(--text-dark);
-    padding: 18px 45px; /* زر أكبر */
+    padding: 18px 45px; 
     font-size: 1.2rem;
     font-weight: 800;
     text-transform: uppercase;
@@ -291,21 +301,21 @@ a:hover {
 
 .cta-button:hover {
     background-color: #ffdb60;
-    transform: translateY(-5px) scale(1.02); /* تأثير أكبر عند التمرير */
-    box-shadow: 0 12px 25px rgba(255, 199, 44, 0.4); /* ظل ذهبي أكثر وضوحاً */
+    transform: translateY(-5px) scale(1.02); 
+    box-shadow: 0 12px 25px rgba(255, 199, 44, 0.4); 
 }
 
 /* -------------------- 4. قسم معرض الأعمال (Portfolio/Grid) -------------------- */
 .section-title {
     font-family: 'Playfair Display', serif;
     text-align: center;
-    font-size: 3.5rem; /* حجم أكبر للعنوان */
+    font-size: 3.5rem; 
     font-weight: 700;
-    padding: 80px 0 30px; /* تباعد أكبر */
+    padding: 80px 0 30px; 
     color: var(--text-dark);
-    opacity: 0; /* مخفي ليظهر بالأنيميشن */
+    opacity: 0; 
     animation: fadeInUp 1s var(--transition-speed) forwards;
-    animation-timeline: view(); /* AOS */
+    animation-timeline: view(); 
     animation-range-start: 20%;
     animation-range-end: 50%;
 }
@@ -313,8 +323,8 @@ a:hover {
 .portfolio-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px; /* فجوة أكبر */
-    padding: 20px 80px 100px; /* تباعد أكبر */
+    gap: 30px; 
+    padding: 20px 80px 100px; 
 }
 
 .work-item {
@@ -323,35 +333,32 @@ a:hover {
     border: 1px solid var(--border-color);
     box-shadow: var(--shadow-light);
     transition: transform var(--transition-speed), box-shadow var(--transition-speed);
-    opacity: 0; /* مخفي ليظهر بالأنيميشن */
+    opacity: 0; 
     animation: scaleUp 0.8s var(--transition-speed) forwards;
-    animation-timeline: view(); /* AOS */
+    animation-timeline: view(); 
     animation-range-start: 0%;
     animation-range-end: 40%;
 }
 
-/* تأخير فردي لكل عنصر في الشبكة */
 .portfolio-grid .work-item:nth-child(1) { animation-delay: 0.1s; }
 .portfolio-grid .work-item:nth-child(2) { animation-delay: 0.2s; }
 .portfolio-grid .work-item:nth-child(3) { animation-delay: 0.3s; }
-/* يمكنك إضافة المزيد من التأخير للعناصر الأخرى */
-
 
 .work-item:hover {
-    transform: translateY(-8px) scale(1.03); /* تأثير أكبر عند التمرير */
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); /* ظل أوضح */
+    transform: translateY(-8px) scale(1.03); 
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); 
 }
 
 .work-item img {
     width: 100%;
-    height: 450px; /* طول ثابت أكبر للصور */
+    height: 450px; 
     object-fit: cover;
     display: block;
-    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* تأثير انسيابي أكثر */
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
 }
 
 .work-item:hover img {
-    transform: scale(1.1); /* تكبير أكبر للصورة */
+    transform: scale(1.1); 
 }
 
 .work-overlay {
@@ -360,7 +367,7 @@ a:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7); /* خلفية أغمق للوضوح */
+    background: rgba(0, 0, 0, 0.7); 
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -375,14 +382,14 @@ a:hover {
 
 .work-overlay h3 {
     color: var(--text-light);
-    font-size: 1.8rem; /* حجم أكبر */
+    font-size: 1.8rem; 
     margin-bottom: 12px;
     text-transform: uppercase;
     font-weight: 800;
-    transform: translateY(20px); /* يظهر من الأسفل */
+    transform: translateY(20px); 
     opacity: 0;
     animation: fadeInUp 0.5s forwards;
-    animation-delay: 0.1s; /* تأخير بسيط */
+    animation-delay: 0.1s; 
 }
 
 .work-item:hover .work-overlay h3 {
@@ -413,41 +420,40 @@ a:hover {
 
 .service-cards {
     display: flex;
-    justify-content: center; /* توسيط البطاقات */
-    gap: 40px; /* فجوة أكبر */
-    margin-top: 60px; /* تباعد أكبر */
+    justify-content: center; 
+    gap: 40px; 
+    margin-top: 60px; 
     flex-wrap: wrap;
 }
 
 .service-card {
     background-color: var(--primary-bg);
-    padding: 40px; /* حشوة أكبر */
+    padding: 40px; 
     flex: 1;
-    max-width: 380px; /* عرض أكبر */
+    max-width: 380px; 
     border: 1px solid var(--accent-color);
     box-shadow: var(--shadow-light);
     transition: all var(--transition-speed);
-    opacity: 0; /* مخفي ليظهر بالأنيميشن */
+    opacity: 0; 
     animation: slideInRight 0.8s var(--transition-speed) forwards;
-    animation-timeline: view(); /* AOS */
+    animation-timeline: view(); 
     animation-range-start: 0%;
     animation-range-end: 40%;
 }
 
-/* تأخير فردي لبطاقات الخدمات */
 .service-card:nth-child(1) { animation-delay: 0.1s; }
 .service-card:nth-child(2) { animation-delay: 0.2s; }
 .service-card:nth-child(3) { animation-delay: 0.3s; }
 
 .service-card:hover {
     background-color: var(--accent-color);
-    transform: translateY(-10px) scale(1.02); /* تأثير أكبر عند التمرير */
-    box-shadow: 0 18px 35px rgba(255, 199, 44, 0.4); /* ظل ذهبي أكثر وضوحاً */
+    transform: translateY(-10px) scale(1.02); 
+    box-shadow: 0 18px 35px rgba(255, 199, 44, 0.4); 
     color: var(--text-dark);
 }
 
 .service-card i {
-    font-size: 4rem; /* حجم أكبر للأيقونات */
+    font-size: 4rem; 
     color: var(--accent-color);
     margin-bottom: 20px;
     transition: color var(--transition-speed), transform var(--transition-speed);
@@ -455,11 +461,11 @@ a:hover {
 
 .service-card:hover i {
     color: var(--text-dark);
-    transform: scale(1.1) rotate(5deg); /* تدوير خفيف للأيقونة */
+    transform: scale(1.1) rotate(5deg); 
 }
 
 .service-card h4 {
-    font-size: 1.8rem; /* حجم أكبر */
+    font-size: 1.8rem; 
     margin-bottom: 12px;
     font-weight: 700;
 }
@@ -473,10 +479,10 @@ a:hover {
 .footer {
     background-color: var(--secondary-bg);
     color: var(--text-light);
-    padding: 50px 50px; /* تباعد أكبر */
+    padding: 50px 50px; 
     text-align: center;
     animation: fadeIn 1s ease-out forwards;
-    animation-timeline: view(); /* AOS */
+    animation-timeline: view(); 
     animation-range-start: 0%;
     animation-range-end: 30%;
 }
@@ -487,23 +493,23 @@ a:hover {
 }
 
 .social-links {
-    margin-bottom: 25px; /* تباعد أكبر */
+    margin-bottom: 25px; 
     list-style: none;
     padding: 0;
     display: flex;
     justify-content: center;
-    gap: 25px; /* فجوة أكبر */
+    gap: 25px; 
 }
 
 .social-links a {
     color: var(--text-light);
-    font-size: 1.8rem; /* حجم أكبر للأيقونات */
+    font-size: 1.8rem; 
     transition: color var(--transition-speed), transform var(--transition-speed);
 }
 
 .social-links a:hover {
     color: var(--accent-color);
-    transform: translateY(-5px) scale(1.1); /* تأثير حركة للأعلى */
+    transform: translateY(-5px) scale(1.1); 
 }
 
 .footer p {
@@ -531,7 +537,7 @@ a:hover {
 
     .portfolio-grid {
         padding: 20px 20px 60px;
-        gap: 20px; /* فجوة مناسبة */
+        gap: 20px; 
     }
 
     .service-cards {
