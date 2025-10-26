@@ -10,7 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
     menuItems.forEach(item => {
         const link = item.querySelector('a');
         if (link) {
-            const linkPath = link.getAttribute('href');
+            // نستخدم فقط اسم الملف للمقارنة لزيادة التوافقية
+            const linkPath = link.getAttribute('href').split('/').pop(); 
             if (linkPath === currentPath) {
                 item.classList.add('active');
             } else {
@@ -22,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. تفعيل تأثير النقر (Scale) وتأثير الضوء (Liquid Highlight)
     menuItems.forEach(item => {
         item.addEventListener('click', () => {
-            
             const icon = item.querySelector('i');
             if(icon) {
                 icon.style.transform = 'scale(1.2)';
@@ -126,14 +126,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('fade-in');
+                // إضافة تأخير بسيط لإظهار العناصر بترتيب متتابع
+                const delay = entry.target.dataset.index * 100;
+                setTimeout(() => {
+                    entry.target.classList.add('fade-in');
+                }, delay);
+                
                 observer.unobserve(entry.target); 
             }
         });
     }, { threshold: 0.1 }); 
 
+    let index = 0;
     sections.forEach(section => {
         section.classList.add('hidden-section'); 
+        section.dataset.index = index++; 
         observer.observe(section);
     });
 });
