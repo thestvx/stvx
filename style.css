@@ -1,25 +1,21 @@
-/* -------------------- I. الخطوط والإعدادات الأساسية -------------------- */
+/*
+ * FASHION-NOVA INSPIRED DESIGN - PORTFOLIO THEME
+ * Theme: Black, White, Gold/Yellow Accent
+ * Designer: [Your Name Here]
+ */
 
-/* تعريف الخطوط: تأكد أن ملفات الخطوط موجودة في مجلد "fonts" بالأسماء المطابقة */
-@font-face {
-    font-family: 'Expo-Bold';
-    src: url('fonts/Expo-Bold.ttf') format('truetype');
-    font-weight: bold;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Expo-Regular';
-    src: url('fonts/Expo-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
+/* -------------------- 1. الإعدادات الأساسية والخطوط -------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Playfair+Display:wght@700&display=swap');
 
 :root {
-    --primary-color: #0066ff;
-    --sidebar-width: 280px;
-    --sidebar-collapsed-width: 80px;
-    --transition-speed: 0.3s;
+    --primary-bg: #FFFFFF;       /* خلفية بيضاء نظيفة */
+    --secondary-bg: #000000;     /* خلفية سوداء (للملاحة/الفوتر) */
+    --text-dark: #000000;        /* نص أسود أساسي */
+    --text-light: #FFFFFF;       /* نص أبيض */
+    --accent-color: #ffc72c;     /* لون التمييز الذهبي/الأصفر */
+    --border-color: #e0e0e0;     /* حدود خفيفة */
+    --shadow-light: 0 4px 8px rgba(0, 0, 0, 0.05); /* ظل خفيف */
+    --shadow-dark: 0 8px 16px rgba(0, 0, 0, 0.3);  /* ظل داكن */
 }
 
 * {
@@ -28,402 +24,349 @@
     box-sizing: border-box;
 }
 
-/* تطبيق الخط الأساسي على كامل الجسم */
 body {
-    font-family: 'Expo-Regular', sans-serif; 
-    background: linear-gradient(135deg, #2a2a72 0%, #009ffd 74%);
-    min-height: 100vh;
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--primary-bg);
+    color: var(--text-dark);
+    direction: rtl;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: var(--text-dark);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--accent-color);
+}
+
+/* -------------------- 2. رأس الصفحة (Header & Navigation) -------------------- */
+.header {
+    background-color: var(--secondary-bg);
+    color: var(--text-light);
+    padding: 15px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--shadow-dark);
+}
+
+/* تنسيق الشعار كصورة */
+.stv-logo {
+    height: 35px; /* ارتفاع الشعار */
+    width: auto;
+    transition: transform 0.3s ease;
+}
+
+.stv-logo:hover {
+    transform: scale(1.05);
+}
+
+.logo a {
+    /* للحفاظ على التناسق في حال عدم تحميل الصورة */
+    font-family: 'Playfair Display', serif; 
+    color: var(--accent-color);
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.nav-menu li a {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 5px 0;
+    position: relative;
+}
+
+.nav-menu li a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    right: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-color);
+    transition: width 0.3s ease;
+}
+
+.nav-menu li a:hover::after,
+.nav-menu li a.active::after {
+    width: 100%;
+}
+
+.auth-buttons a {
+    color: var(--text-light);
+    padding: 8px 15px;
+    border: 1px solid var(--accent-color);
+    border-radius: 2px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.auth-buttons a:hover {
+    background-color: var(--accent-color);
+    color: var(--text-dark);
+}
+
+/* -------------------- 3. قسم البطل (Hero Section) -------------------- */
+.hero-section {
+    position: relative;
+    height: 80vh; /* تركيز على حجم الصورة */
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #fff;
-    overflow: hidden; 
-    direction: rtl; 
-}
-
-/* -------------------- II. حاوية المحتوى (Glassmorphism) -------------------- */
-.container {
-    display: flex;
-    width: 90%;
-    height: 85vh;
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
-    border-radius: 24px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    overflow: hidden;
-    direction: rtl; 
-}
-
-/* -------------------- III. الشريط الجانبي (Sidebar) -------------------- */
-.sidebar {
-    width: var(--sidebar-width);
-    height: 100%;
-    padding: 30px 15px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-left: 1px solid rgba(255, 255, 255, 0.08); 
-    border-right: none; 
-    display: flex;
-    flex-direction: column;
-    transition: width var(--transition-speed) ease;
-    position: relative;
-}
-
-.logo {
     text-align: center;
-    margin-bottom: 40px;
+    background-color: #f8f8f8; /* خلفية افتراضية */
+    background-size: cover;
+    background-position: center;
+    /* يمكنك وضع صورة كبيرة هنا لاحد اعمالك كخلفية */
+    /* background-image: url('images/hero-work-sample.jpg'); */ 
 }
 
-.logo i {
-    font-size: 36px;
-    color: #fff;
-    opacity: 0.9;
+.hero-content {
+    background: rgba(0, 0, 0, 0.4); /* طبقة شفافة لجعل النص واضحاً */
+    padding: 30px 60px;
+    color: var(--text-light);
+    max-width: 800px;
+    border-radius: 8px;
 }
 
-.logo h2 {
-    font-family: 'Expo-Bold', sans-serif; 
-    font-size: 20px;
-    font-weight: bold; 
-    margin-top: 5px;
+.hero-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    margin-bottom: 10px;
+    color: var(--accent-color);
 }
 
-.menu ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.menu li {
-    margin-bottom: 8px;
-    border-radius: 16px;
-    transition: all 0.2s ease;
-    position: relative;
-}
-
-.menu li:hover {
-    background: rgba(255, 255, 255, 0.2);
-}
-
-.menu li.active {
-    background: rgba(255, 255, 255, 0.25);
-}
-
-.menu li.active::before {
-    content: '';
-    position: absolute;
-    right: -15px; 
-    left: auto; 
-    top: 50%;
-    transform: translateY(-50%);
-    width: 4px;
-    height: 20px;
-    background: var(--primary-color);
-    border-radius: 4px 0 0 4px; 
-}
-
-.menu a {
-    display: flex;
-    align-items: center;
-    color: #fff;
-    padding: 12px 16px;
-    text-decoration: none;
-    font-weight: 500;
-    letter-spacing: 0.3px;
-}
-
-.menu a i {
-    font-size: 20px;
-    margin-left: 14px; 
-    margin-right: 0; 
-    min-width: 22px;
-    text-align: center;
-}
-
-.profile {
-    margin-top: auto;
-    display: flex;
-    align-items: center;
-    padding: 16px;
-    background: rgba(255, 255, 255, 0.12);
-    border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.avatar {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin-left: 12px;
-    margin-right: 0;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-}
-
-.avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.user-info h3 {
-    font-size: 16px;
-    font-weight: 500;
-    margin-bottom: 2px;
-}
-
-.user-info p {
-    font-size: 12px;
-    opacity: 0.8;
-}
-
-/* -------------------- IV. المحتوى الرئيسي (Content) -------------------- */
-.content {
-    flex: 1;
-    padding: 40px;
-    overflow-y: auto;
-}
-
-header {
+.hero-content p {
+    font-size: 1.4rem;
+    font-weight: 400;
     margin-bottom: 30px;
 }
 
-header h1 {
-    font-family: 'Expo-Bold', sans-serif; 
-    font-size: 32px;
-    font-weight: bold;
-    margin-bottom: 8px;
-}
-
-header p {
-    font-size: 16px;
-    opacity: 0.8;
-}
-
-/* -------------------- V. المشاريع والبطاقات (Project Cards) -------------------- */
-
-.featured-projects h2, .request-form-section h2 {
-    font-family: 'Expo-Bold', sans-serif; 
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    padding-top: 15px; 
-}
-
-.card-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-    gap: 24px;
-    margin-top: 30px;
-}
-
-.card {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: block; 
-    text-align: right; 
-}
-
-.card:hover {
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-}
-
-.project-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 14px;
-    margin-bottom: 15px;
-}
-
-.project-card .card-info h3 {
-    font-family: 'Expo-Bold', sans-serif; 
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.project-card .card-info p {
-    font-size: 14px;
-    opacity: 0.9;
-    margin-bottom: 15px;
-}
-
-.view-btn {
-    display: inline-block;
-    padding: 8px 15px;
-    background: var(--primary-color);
-    color: #fff;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: 500;
-    transition: background 0.3s ease;
-}
-
-.view-btn:hover {
-    background: #004ecc;
-}
-
-/* -------------------- VI. نموذج طلب المشروع (Request Form) -------------------- */
-.request-form-section {
-    margin-top: 40px;
-}
-
-.request-form {
-    padding: 30px;
-    background: rgba(255, 255, 255, 0.1); 
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    font-size: 16px;
-    font-weight: 500;
-    margin-bottom: 8px;
-    opacity: 0.9;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-    width: 100%;
-    padding: 12px;
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    background: rgba(255, 255, 255, 0.05);
-    color: #fff;
-    font-size: 16px;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    outline: none;
-    transition: border-color 0.3s ease;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-    border-color: var(--primary-color);
-}
-
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-    color: rgba(255, 255, 255, 0.6);
-}
-
-.form-group select option {
-    background-color: #1a1a40; 
-    color: #fff;
-}
-
-.submit-btn {
-    font-family: 'Expo-Bold', sans-serif; 
-    display: block;
-    width: 100%;
-    padding: 15px;
-    background: var(--primary-color);
-    color: #fff;
+.cta-button {
+    background-color: var(--accent-color);
+    color: var(--text-dark);
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-weight: 800;
+    text-transform: uppercase;
     border: none;
-    border-radius: 12px;
-    font-size: 18px;
-    font-weight: bold;
     cursor: pointer;
-    transition: background 0.3s ease, transform 0.1s ease;
+    transition: all 0.3s ease;
+    display: inline-block;
 }
 
-.submit-btn:hover {
-    background: #004ecc;
+.cta-button:hover {
+    background-color: #ffdb60;
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-dark);
 }
 
-.submit-btn:active {
-    transform: scale(0.99);
+/* -------------------- 4. قسم معرض الأعمال (Portfolio/Grid) -------------------- */
+.section-title {
+    font-family: 'Playfair Display', serif;
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 700;
+    padding: 50px 0 20px;
+    color: var(--text-dark);
 }
 
-/* -------------------- VII. تنسيق صفحات المصادقة (Auth Page) -------------------- */
-.auth-body {
-    background: linear-gradient(135deg, #2a2a72 0%, #009ffd 74%);
-    min-height: 100vh;
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px 50px 80px;
+}
+
+.work-item {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-light);
+    transition: transform 0.3s ease;
+}
+
+.work-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-dark);
+}
+
+.work-item img {
+    width: 100%;
+    height: 400px; /* طول ثابت للصور */
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.work-item:hover img {
+    transform: scale(1.05);
+}
+
+.work-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
-    color: #fff;
-    overflow-y: auto; 
-    overflow-x: hidden;
-    direction: rtl; 
-    perspective: 1500px; 
-}
-
-/* -------------------- VIII. تعديلات متجاوبة (Responsive) -------------------- */
-@media (max-width: 1024px) {
-    .sidebar {
-        width: var(--sidebar-collapsed-width);
-    }
-    
-    .menu a span {
-        display: none;
-    }
-    
-    .menu a i {
-        margin-left: 0; 
-    }
-    
-    .user-info {
-        display: none;
-    }
-    
-    .profile {
-        justify-content: center;
-    }
-    
-    .avatar {
-        margin-left: 0;
-        margin-right: 0;
-    }
-    
-    .content {
-        padding: 30px;
-    }
-    
-    .card-container {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
-    }
-}
-
-@media (max-width: 768px) {
-    .container {
-        width: 95%;
-        height: 90vh;
-    }
-    
-    .sidebar {
-        width: 60px; 
-    }
-    
-    .card-container {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* -------------------- IX. مؤثر الظهور السلس (Reveal on Scroll CSS) -------------------- */
-
-.hidden-section {
+    align-items: center;
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out; 
+    transition: opacity 0.4s ease;
 }
 
-.fade-in {
+.work-item:hover .work-overlay {
     opacity: 1;
-    transform: translateY(0);
+}
+
+.work-overlay h3 {
+    color: var(--text-light);
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.work-overlay p {
+    color: var(--accent-color);
+    font-size: 1rem;
+}
+
+/* -------------------- 5. قسم الخدمات/المهارات (Services/Skills) -------------------- */
+.services-section {
+    background-color: #f8f8f8;
+    padding: 60px 50px;
+    text-align: center;
+}
+
+.service-cards {
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.service-card {
+    background-color: var(--primary-bg);
+    padding: 30px;
+    flex: 1;
+    max-width: 350px;
+    border: 1px solid var(--accent-color);
+    box-shadow: var(--shadow-light);
+    transition: all 0.3s ease;
+}
+
+.service-card:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-dark);
+    color: var(--text-dark);
+}
+
+.service-card i {
+    font-size: 3rem;
+    color: var(--accent-color);
+    margin-bottom: 15px;
+    transition: color 0.3s ease;
+}
+
+.service-card:hover i {
+    color: var(--text-dark);
+}
+
+.service-card h4 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+/* -------------------- 6. تذييل الصفحة (Footer) -------------------- */
+.footer {
+    background-color: var(--secondary-bg);
+    color: var(--text-light);
+    padding: 40px 50px;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.social-links {
+    margin-bottom: 20px;
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-links a {
+    color: var(--text-light);
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--accent-color);
+}
+
+.footer p {
+    font-size: 0.9rem;
+    margin-top: 15px;
+}
+
+/* -------------------- 7. التعديلات المتجاوبة (Responsive) -------------------- */
+@media (max-width: 992px) {
+    .header {
+        padding: 15px 20px;
+    }
+    
+    .nav-menu {
+        display: none; /* إخفاء القائمة في الشاشات الأصغر (يمكن إضافة زر قائمة) */
+    }
+
+    .hero-content h1 {
+        font-size: 3rem;
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
+    }
+
+    .portfolio-grid {
+        padding: 20px 20px 60px;
+        gap: 15px;
+    }
+
+    .service-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .service-card {
+        max-width: 100%;
+    }
 }
