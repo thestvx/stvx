@@ -1,6 +1,6 @@
 /* -------------------- إعدادات الحاوية الرئيسية (3D) -------------------- */
 .auth-container {
-    width: 650px; /* عرض مناسب للحاوية التي تحمل البطاقتين */
+    width: 650px; 
     height: 480px;
     position: relative;
     transform-style: preserve-3d;
@@ -24,7 +24,7 @@
 .auth-container.show-recovery .recovery-card {
     opacity: 1;
     pointer-events: auto;
-    transform: perspective(1000px) rotateY(0deg) translateZ(0px); /* إلغاء دوران الاستعادة والـ 3D */
+    transform: perspective(1000px) rotateY(0deg) translateZ(0px); 
 }
 
 /* -------------------- تنسيق النماذج والبطاقات -------------------- */
@@ -40,7 +40,6 @@
     padding: 20px;
 }
 
-/* وضعية البداية لبطاقات 3D */
 .login-form {
     transform: rotateY(0deg) translateZ(0px); 
 }
@@ -60,7 +59,7 @@
 .auth-card {
     width: 380px;
     padding: 30px;
-    background: rgba(255, 255, 255, 0.08); /* الزجاجية */
+    background: rgba(255, 255, 255, 0.08); 
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-radius: 20px;
@@ -73,7 +72,7 @@
 
 /* -------------------- التنسيقات الداخلية -------------------- */
 .auth-card h2 {
-    font-family: 'Arial', sans-serif; /* تم التعديل ليتوافق مع style.css المصحح */
+    font-family: 'Arial', sans-serif; 
     font-size: 26px;
     text-align: center;
     margin-bottom: 25px;
@@ -89,7 +88,7 @@
     border-radius: 10px;
     background: rgba(255, 255, 255, 0.1);
     color: #fff;
-    font-family: 'Arial', sans-serif; /* تم التعديل ليتوافق مع style.css المصحح */
+    font-family: 'Arial', sans-serif;
     font-size: 15px;
     transition: border-color 0.3s;
 }
@@ -111,7 +110,7 @@
     border-radius: 10px;
     background: var(--primary-color);
     color: #fff;
-    font-family: 'Arial', sans-serif; /* تم التعديل ليتوافق مع style.css المصحح */
+    font-family: 'Arial', sans-serif;
     font-size: 17px;
     font-weight: 700;
     cursor: pointer;
