@@ -40,7 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // II. تأثير الحركة ثلاثية الأبعاد (3D Tilt Effect)
     // ----------------------------------------------------
     
-    // استهداف جميع النماذج التي تحتاج الحركة
     const tiltCards = [loginForm, registerForm, recoveryCard];
 
     tiltCards.forEach(card => {
@@ -56,17 +55,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const handleMove = (e) => {
             const rect = card.getBoundingClientRect();
             
-            // حساب موضع الماوس بالنسبة لمنتصف البطاقة
             const mouseX = e.clientX - (rect.left + rect.width / 2);
             const mouseY = e.clientY - (rect.top + rect.height / 2);
             
-            // تحديد زاوية الدوران (بحد أقصى +/- 5 درجات)
             const rotateX = (mouseY / (rect.height / 2)) * -5; 
             const rotateY = (mouseX / (rect.width / 2)) * 5; 
             
             let rotationY = 0;
             if (card.classList.contains('register-form')) {
-                rotationY = 180; // الحفاظ على دوران بطاقة التسجيل
+                rotationY = 180; 
             }
 
             // تطبيق التحويل
