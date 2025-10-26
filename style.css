@@ -1,23 +1,5 @@
-/* -------------------- I. تعريف الخطوط المخصصة (@font-face) -------------------- */
-@font-face {
-    font-family: 'Expo-Bold';
-    /* تأكد أن هذا المسار (./fonts/) صحيح */
-    src: url('./fonts/Expo-Arabic-Bold.ttf') format('truetype');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap; 
-}
-
-@font-face {
-    font-family: 'Al-Jazeera-Regular';
-    /* تأكد أن هذا المسار (./fonts/) صحيح */
-    src: url('./fonts/Al-Jazeera-Arabic-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
-/* -------------------- II. الإعدادات الأساسية -------------------- */
+/* -------------------- I. الإعدادات الأساسية -------------------- */
+/* تم إزالة @font-face والاعتماد على الخطوط الافتراضية هنا */
 :root {
     --primary-color: #0066ff;
     --sidebar-width: 280px;
@@ -31,16 +13,15 @@
     box-sizing: border-box;
 }
 
-/* تطبيق خط Al-Jazeera-Regular على جميع النصوص والخلفية المتدرجة */
+/* استخدام خطوط عائلية بديلة مضمونة الظهور */
 body {
-    font-family: 'Al-Jazeera-Regular', 'Arial', sans-serif; 
+    font-family: 'Arial', 'Tahoma', sans-serif; 
     background: linear-gradient(135deg, #2a2a72 0%, #009ffd 74%);
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #fff;
-    /* إخفاء التمرير في الـ body الأساسي ليتم التمرير داخل .content */
     overflow: hidden; 
     direction: rtl; 
 }
@@ -61,7 +42,7 @@ body {
     direction: rtl; 
 }
 
-/* -------------------- III. الشريط الجانبي (Sidebar) -------------------- */
+/* -------------------- II. الشريط الجانبي (Sidebar) -------------------- */
 .sidebar {
     width: var(--sidebar-width);
     height: 100%;
@@ -88,9 +69,9 @@ body {
     opacity: 0.9;
 }
 
-/* تطبيق خط Expo-Bold على عنوان اللوجو */
+/* تم إزالة Expo-Bold للحد من الأخطاء والاعتماد على fontWeight */
 .logo h2 {
-    font-family: 'Expo-Bold', sans-serif; 
+    font-family: 'Arial', sans-serif; 
     font-size: 20px;
     font-weight: 700; 
     margin-top: 5px;
@@ -185,7 +166,7 @@ body {
     opacity: 0.8;
 }
 
-/* -------------------- IV. المحتوى الرئيسي (Content) -------------------- */
+/* -------------------- III. المحتوى الرئيسي (Content) -------------------- */
 .content {
     flex: 1;
     padding: 40px;
@@ -196,9 +177,8 @@ header {
     margin-bottom: 30px;
 }
 
-/* تطبيق خط Expo-Bold على العناوين الكبيرة */
 header h1 {
-    font-family: 'Expo-Bold', sans-serif; 
+    font-family: 'Arial', sans-serif; 
     font-size: 32px;
     font-weight: 700;
     margin-bottom: 8px;
@@ -209,11 +189,10 @@ header p {
     opacity: 0.8;
 }
 
-/* -------------------- V. المشاريع والبطاقات (Project Cards) -------------------- */
+/* -------------------- IV. المشاريع والبطاقات (Project Cards) -------------------- */
 
-/* تطبيق خط Expo-Bold على العناوين المتوسطة */
 .featured-projects h2, .request-form-section h2 {
-    font-family: 'Expo-Bold', sans-serif; 
+    font-family: 'Arial', sans-serif; 
     font-size: 28px;
     font-weight: 700;
     margin-bottom: 20px;
@@ -251,9 +230,8 @@ header p {
     margin-bottom: 15px;
 }
 
-/* تطبيق خط Expo-Bold على عناوين المشاريع داخل البطاقة */
 .project-card .card-info h3 {
-    font-family: 'Expo-Bold', sans-serif; 
+    font-family: 'Arial', sans-serif; 
     font-size: 20px;
     font-weight: 700;
     margin-bottom: 5px;
@@ -280,7 +258,7 @@ header p {
     background: #004ecc;
 }
 
-/* -------------------- VI. نموذج طلب المشروع (Request Form) -------------------- */
+/* -------------------- V. نموذج طلب المشروع (Request Form) -------------------- */
 .request-form-section {
     margin-top: 40px;
 }
@@ -337,7 +315,7 @@ header p {
 }
 
 .submit-btn {
-    font-family: 'Expo-Bold', sans-serif; 
+    font-family: 'Arial', sans-serif; 
     display: block;
     width: 100%;
     padding: 15px;
@@ -359,8 +337,7 @@ header p {
     transform: scale(0.99);
 }
 
-/* -------------------- VII. تنسيق صفحات المصادقة (Auth Page) -------------------- */
-/* ملاحظة: التنسيق المفصل لـ .auth-card موجود في auth.css */
+/* -------------------- VI. تنسيق صفحات المصادقة (Auth Page) -------------------- */
 .auth-body {
     background: linear-gradient(135deg, #2a2a72 0%, #009ffd 74%);
     min-height: 100vh;
@@ -371,12 +348,10 @@ header p {
     overflow-y: auto; 
     overflow-x: hidden;
     direction: rtl; 
-    /* إعداد العمق ثلاثي الأبعاد لحاوية المصادقة */
     perspective: 1500px; 
 }
 
-
-/* -------------------- VIII. تعديلات متجاوبة (Responsive) -------------------- */
+/* -------------------- VII. تعديلات متجاوبة (Responsive) -------------------- */
 
 @media (max-width: 1024px) {
     .sidebar {
@@ -428,7 +403,7 @@ header p {
     }
 }
 
-/* -------------------- IX. مؤثر الظهور السلس (Reveal on Scroll CSS) -------------------- */
+/* -------------------- VIII. مؤثر الظهور السلس (Reveal on Scroll CSS) -------------------- */
 
 .hidden-section {
     opacity: 0;
