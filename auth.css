@@ -1,5 +1,5 @@
 /*
- * Forest Login Design - Blue Theme
+ * Blue Ocean Login Design
  * Created by: TheDoc - Customized for STVX RTL by خبير/ة البرمجة
  * Blue Theme by خبير/ة البرمجة
  * Crafted with precision and style
@@ -69,13 +69,12 @@ body {
     height: 100%;
     z-index: -1;
     
-    /* يمكنك تغيير هذه الصورة إلى خلفية زرقاء أو متناسقة مع الأزرق */
     background-image: url('https://img.freepik.com/fotos-kostenlos/oberflaechenansicht-der-ozeanwellen-bei-sonnenuntergang_23-2149544778.jpg?w=740&t=st=1720899002~exp=1720899602~hmac=6940a08e330a1c1d6368d5045610e6207b53982e5ee6f5825d5ce94ed7474765');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    animation: blueOceanGradient 15s ease infinite; /* اسم جديد للأنيميشن */
+    animation: blueOceanGradient 15s ease infinite; 
 }
 
 .background-container::before {
@@ -89,7 +88,7 @@ body {
         radial-gradient(circle at 20% 80%, rgba(100, 150, 200, 0.3) 0%, transparent 50%),
         radial-gradient(circle at 80% 20%, rgba(80, 130, 180, 0.3) 0%, transparent 50%),
         radial-gradient(circle at 40% 40%, rgba(70, 110, 160, 0.2) 0%, transparent 50%);
-    animation: blueMovement 20s ease-in-out infinite; /* اسم جديد للأنيميشن */
+    animation: blueMovement 20s ease-in-out infinite; 
 }
 
 .background-overlay {
@@ -142,20 +141,19 @@ body {
     animation-delay: 3s;
 }
 
-/* تحديث أسماء keyframes لتجنب التضارب وتحديد اللون الجديد */
-@keyframes blueOceanGradient { /* TheDoc's blue ocean magic */
+@keyframes blueOceanGradient { 
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
-@keyframes blueMovement { /* Animated by TheDoc - blue theme */
+@keyframes blueMovement { 
     0%, 100% { transform: translateY(0px) rotate(0deg); }
     33% { transform: translateY(-10px) rotate(1deg); }
     66% { transform: translateY(5px) rotate(-1deg); }
 }
 
-@keyframes float { /* TheDoc's particles */
+@keyframes float { 
     0%, 100% { transform: translateY(0px) translateX(0px) scale(0); opacity: 0; }
     10% { opacity: 1; scale: 1; }
     90% { opacity: 1; scale: 1; }
@@ -623,7 +621,6 @@ body {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* ألوان الأيقونات الاجتماعية الأصلية (يمكن تغييرها إذا أردت) */
 .social-btn.google:hover {
     background: #db4437; 
 }
@@ -708,6 +705,81 @@ body {
     }
 }
 
+/* -------------------- 9. زر العودة (Home Button) -------------------- */
+
+.home-button {
+    /* تطبيق خط Expo-Bold */
+    font-family: 'Expo-Bold', sans-serif; 
+    position: absolute;
+    /* تثبيت الزر في الزاوية العلوية اليمنى لـ RTL */
+    top: 30px;
+    right: 30px; 
+    left: auto;
+    
+    background-color: var(--text-primary); /* خلفية بيضاء */
+    color: #1a1a1a; /* لون النص */
+    text-align: center;
+    width: 200px; /* w-48 */
+    height: 56px; /* h-14 */
+    border-radius: 16px; /* rounded-2xl */
+    font-size: 1.25rem; /* text-xl */
+    font-weight: 600; /* font-semibold */
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    z-index: 10;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    overflow: hidden;
+    transition: all 0.5s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.button-icon-container {
+    /* حاوية الأيقونة - الألوان الزرقاء الباردة الجديدة */
+    background: var(--primary-gradient); 
+    border-radius: 12px; /* rounded-xl */
+    height: 48px; /* h-12 */
+    width: 25%; /* w-1/4 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    /* لـ RTL: تثبيت الأيقونة في اليمين (right) */
+    right: 4px;
+    left: auto; 
+    top: 4px; 
+    z-index: 11;
+    transition: width 0.5s cubic-bezier(0.19, 1, 0.22, 1); /* تأثير انسيابي */
+}
+
+.home-button:hover .button-icon-container {
+    width: 192px; /* w-[184px] - توسيع الحاوية عند التحويم */
+}
+
+.button-icon-container svg path {
+    fill: var(--text-primary); /* الأيقونة باللون الأبيض */
+}
+
+.button-text {
+    /* لـ RTL: تحريك النص قليلاً إلى اليسار */
+    transform: translateX(-8px); 
+    z-index: 12;
+    transition: transform 0.5s ease;
+}
+
+.home-button:hover .button-text {
+    /* عند التحويم، يصبح أبيض ليظهر فوق الخلفية الزرقاء المتوسعة */
+    color: var(--text-primary); 
+    /* عند التحويم، يعود النص لمكانه الطبيعي */
+    transform: translateX(0);
+    transition: color 0.1s ease 0.3s; /* تأخير بسيط في تغيير لون النص */
+}
+
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .container {
@@ -742,6 +814,22 @@ body {
         width: 45px;
         height: 45px;
         font-size: 1rem;
+    }
+
+    .home-button {
+        top: 15px;
+        right: 15px; 
+        width: 160px;
+        height: 50px;
+        font-size: 1.1rem;
+    }
+    
+    .button-icon-container {
+        height: 42px;
+    }
+
+    .home-button:hover .button-icon-container {
+        width: 152px;
     }
 }
 
