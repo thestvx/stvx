@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // ----------------------------------------------------
-    // I. وظيفة تفاعل الشريط الجانبي
+    // I. وظيفة تفاعل الشريط الجانبي (Liquid Highlight)
     // ----------------------------------------------------
     const menuItems = document.querySelectorAll('.menu li');
     // الحصول على اسم الملف الحالي لتعيين العنصر النشط
@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const link = item.querySelector('a');
         if (link) {
             const linkPath = link.getAttribute('href');
-             // مقارنة اسم الملف (مثل 'index.html')
             if (linkPath === currentPath) {
                 item.classList.add('active');
             } else {
@@ -101,8 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ----------------------------------------------------
     // III. وظيفة معالجة نموذج طلب المشروع (Form Submission) 
     // ----------------------------------------------------
-    // نستهدف نموذج طلب الخدمة فقط (يجب ألا يؤثر على نماذج Firebase)
-    const requestForm = document.querySelector('.request-form:not(#loginForm):not(#signupForm)');
+    const requestForm = document.querySelector('.request-form');
     
     if (requestForm) {
         requestForm.addEventListener('submit', function(e) {
