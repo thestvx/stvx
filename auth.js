@@ -44,29 +44,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const tiltCards = [loginForm, registerForm, recoveryCard];
 
     tiltCards.forEach(card => {
-        if (!card) return; // تأكد من وجود العنصر
+        if (!card) return; 
 
         const handleMove = (e) => {
             const rect = card.getBoundingClientRect();
             
-            // حساب الزوايا من مركز البطاقة
             const mouseX = e.clientX - (rect.left + rect.width / 2);
             const mouseY = e.clientY - (rect.top + rect.height / 2);
             
-            const rotateX = (mouseY / (rect.height / 2)) * -5; // تقليل الزاوية ليكون التأثير أنعم
+            const rotateX = (mouseY / (rect.height / 2)) * -5; 
             const rotateY = (mouseX / (rect.width / 2)) * 5; 
             
-            // تحديد حالة البطاقة (لأنها قد تكون مُدارة أو مُزاحة)
             let rotationY = 0;
             if (card.classList.contains('register-form')) {
-                rotationY = 180; // البطاقة الخلفية يجب أن تحافظ على دورانها الأساسي
+                rotationY = 180; 
             }
 
             // تطبيق التحويل
             card.style.transform = `
                 perspective(1000px)
                 rotateX(${rotateX}deg)
-                rotateY(${rotationY + rotateY}deg) /* إضافة دوران الحركة إلى الدوران الأساسي */
+                rotateY(${rotationY + rotateY}deg) 
                 translateZ(20px)
             `;
 
@@ -109,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
         card.addEventListener('mousemove', handleMove);
         card.addEventListener('mouseleave', handleLeave);
         
-        // تعيين وضع البداية الافتراضي (لـ recovery-card خاصة)
+        // تعيين وضع البداية الافتراضي
         if (card.classList.contains('login-form')) {
              card.style.transform = `perspective(1000px) rotateY(0deg) translateZ(0px)`;
         } else if (card.classList.contains('register-form')) {
@@ -118,23 +116,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ----------------------------------------------------
-    // III. معالجة نماذج المصادقة (لربط Firebase لاحقاً)
+    // III. معالجة نماذج المصادقة (لربط Firebase)
     // ----------------------------------------------------
-
-    // نموذج تسجيل الدخول
+    
+    // ملاحظة: وظائف Firebase سيتم إضافتها هنا في ملف firebase-auth.js
     document.getElementById('loginForm')?.addEventListener('submit', function(e) {
         e.preventDefault();
-        const email = document.getElementById('loginEmail').value;
-        const password = document.getElementById('loginPassword').value;
-        console.log(`تسجيل الدخول: ${email} | ${password}`);
-        // هنا سيتم استدعاء وظيفة تسجيل الدخول من Firebase
+        console.log('محاولة تسجيل الدخول...');
+        // يمكنك إضافة كود ربط Firebase هنا
     });
 
-    // نموذج التسجيل
     document.getElementById('registerForm')?.addEventListener('submit', function(e) {
         e.preventDefault();
-        const name = document.getElementById('signupName').value;
-        const email = document.getElementById('signupEmail').value;
         const password = document.getElementById('signupPassword').value;
         const confirmPassword = document.getElementById('signupConfirmPassword').value;
 
@@ -143,16 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        console.log(`تسجيل جديد: ${name} | ${email}`);
-        // هنا سيتم استدعاء وظيفة التسجيل من Firebase
-    });
-
-    // نموذج الاستعادة
-    document.getElementById('recovery-card')?.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const email = document.getElementById('recoveryEmail').value;
-        console.log(`استعادة كلمة المرور لـ: ${email}`);
-        alert(`تم إرسال تعليمات استعادة كلمة المرور إلى ${email}.`);
-        // هنا سيتم استدعاء وظيفة استعادة كلمة المرور من Firebase
+        console.log('محاولة تسجيل جديد...');
+        // يمكنك إضافة كود ربط Firebase هنا
     });
 });
