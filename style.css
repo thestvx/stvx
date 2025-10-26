@@ -1,6 +1,7 @@
 /* -------------------- I. تعريف الخطوط المخصصة (@font-face) -------------------- */
 @font-face {
     font-family: 'Expo-Bold';
+    /* تأكد أن هذا المسار (./fonts/) صحيح */
     src: url('./fonts/Expo-Arabic-Bold.ttf') format('truetype');
     font-weight: 700;
     font-style: normal;
@@ -9,6 +10,7 @@
 
 @font-face {
     font-family: 'Al-Jazeera-Regular';
+    /* تأكد أن هذا المسار (./fonts/) صحيح */
     src: url('./fonts/Al-Jazeera-Arabic-Regular.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
@@ -29,7 +31,7 @@
     box-sizing: border-box;
 }
 
-/* تطبيق خط Al-Jazeera-Regular على جميع النصوص */
+/* تطبيق خط Al-Jazeera-Regular على جميع النصوص والخلفية المتدرجة */
 body {
     font-family: 'Al-Jazeera-Regular', 'Arial', sans-serif; 
     background: linear-gradient(135deg, #2a2a72 0%, #009ffd 74%);
@@ -38,6 +40,7 @@ body {
     align-items: center;
     justify-content: center;
     color: #fff;
+    /* إخفاء التمرير في الـ body الأساسي ليتم التمرير داخل .content */
     overflow: hidden; 
     direction: rtl; 
 }
@@ -47,6 +50,7 @@ body {
     display: flex;
     width: 90%;
     height: 85vh;
+    /* تأثير الزجاج (Glassmorphism) */
     background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
@@ -57,7 +61,7 @@ body {
     direction: rtl; 
 }
 
-/* -------------------- الشريط الجانبي (Sidebar) -------------------- */
+/* -------------------- III. الشريط الجانبي (Sidebar) -------------------- */
 .sidebar {
     width: var(--sidebar-width);
     height: 100%;
@@ -84,6 +88,7 @@ body {
     opacity: 0.9;
 }
 
+/* تطبيق خط Expo-Bold على عنوان اللوجو */
 .logo h2 {
     font-family: 'Expo-Bold', sans-serif; 
     font-size: 20px;
@@ -180,7 +185,7 @@ body {
     opacity: 0.8;
 }
 
-/* -------------------- المحتوى الرئيسي (Content) -------------------- */
+/* -------------------- IV. المحتوى الرئيسي (Content) -------------------- */
 .content {
     flex: 1;
     padding: 40px;
@@ -191,6 +196,7 @@ header {
     margin-bottom: 30px;
 }
 
+/* تطبيق خط Expo-Bold على العناوين الكبيرة */
 header h1 {
     font-family: 'Expo-Bold', sans-serif; 
     font-size: 32px;
@@ -203,8 +209,9 @@ header p {
     opacity: 0.8;
 }
 
-/* -------------------- المشاريع والبطاقات (Project Cards) -------------------- */
+/* -------------------- V. المشاريع والبطاقات (Project Cards) -------------------- */
 
+/* تطبيق خط Expo-Bold على العناوين المتوسطة */
 .featured-projects h2, .request-form-section h2 {
     font-family: 'Expo-Bold', sans-serif; 
     font-size: 28px;
@@ -244,6 +251,7 @@ header p {
     margin-bottom: 15px;
 }
 
+/* تطبيق خط Expo-Bold على عناوين المشاريع داخل البطاقة */
 .project-card .card-info h3 {
     font-family: 'Expo-Bold', sans-serif; 
     font-size: 20px;
@@ -272,7 +280,7 @@ header p {
     background: #004ecc;
 }
 
-/* -------------------- نموذج طلب المشروع (Request Form) -------------------- */
+/* -------------------- VI. نموذج طلب المشروع (Request Form) -------------------- */
 .request-form-section {
     margin-top: 40px;
 }
@@ -351,7 +359,8 @@ header p {
     transform: scale(0.99);
 }
 
-/* -------------------- تنسيق صفحات المصادقة (Auth Page) -------------------- */
+/* -------------------- VII. تنسيق صفحات المصادقة (Auth Page) -------------------- */
+/* ملاحظة: التنسيق المفصل لـ .auth-card موجود في auth.css */
 .auth-body {
     background: linear-gradient(135deg, #2a2a72 0%, #009ffd 74%);
     min-height: 100vh;
@@ -362,10 +371,12 @@ header p {
     overflow-y: auto; 
     overflow-x: hidden;
     direction: rtl; 
-    perspective: 1500px; /* لإعطاء عمق لـ auth-container */
+    /* إعداد العمق ثلاثي الأبعاد لحاوية المصادقة */
+    perspective: 1500px; 
 }
 
-/* -------------------- تعديلات متجاوبة (Responsive) -------------------- */
+
+/* -------------------- VIII. تعديلات متجاوبة (Responsive) -------------------- */
 
 @media (max-width: 1024px) {
     .sidebar {
@@ -417,7 +428,7 @@ header p {
     }
 }
 
-/* -------------------- مؤثر الظهور السلس (Reveal on Scroll CSS) -------------------- */
+/* -------------------- IX. مؤثر الظهور السلس (Reveal on Scroll CSS) -------------------- */
 
 .hidden-section {
     opacity: 0;
