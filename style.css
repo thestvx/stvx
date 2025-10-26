@@ -1,5 +1,4 @@
 /* -------------------- I. الإعدادات الأساسية -------------------- */
-/* تم إزالة @font-face والاعتماد على الخطوط الافتراضية هنا */
 :root {
     --primary-color: #0066ff;
     --sidebar-width: 280px;
@@ -13,7 +12,7 @@
     box-sizing: border-box;
 }
 
-/* استخدام خطوط عائلية بديلة مضمونة الظهور */
+/* استخدام خطوط نظام آمنة (لحل مشاكل الخطوط) */
 body {
     font-family: 'Arial', 'Tahoma', sans-serif; 
     background: linear-gradient(135deg, #2a2a72 0%, #009ffd 74%);
@@ -69,7 +68,6 @@ body {
     opacity: 0.9;
 }
 
-/* تم إزالة Expo-Bold للحد من الأخطاء والاعتماد على fontWeight */
 .logo h2 {
     font-family: 'Arial', sans-serif; 
     font-size: 20px;
@@ -352,7 +350,6 @@ header p {
 }
 
 /* -------------------- VII. تعديلات متجاوبة (Responsive) -------------------- */
-
 @media (max-width: 1024px) {
     .sidebar {
         width: var(--sidebar-collapsed-width);
