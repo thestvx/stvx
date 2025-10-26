@@ -72,12 +72,12 @@
 
 /* -------------------- التنسيقات الداخلية -------------------- */
 .auth-card h2 {
-    font-family: 'Arial', sans-serif; 
+    font-family: 'Expo-Bold', sans-serif; /* تطبيق الخط الثقيل */
     font-size: 26px;
     text-align: center;
     margin-bottom: 25px;
     color: #fff;
-    font-weight: 700;
+    font-weight: bold;
 }
 
 .auth-input input {
@@ -88,7 +88,7 @@
     border-radius: 10px;
     background: rgba(255, 255, 255, 0.1);
     color: #fff;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Expo-Regular', sans-serif; /* تطبيق الخط الأساسي */
     font-size: 15px;
     transition: border-color 0.3s;
 }
@@ -110,9 +110,9 @@
     border-radius: 10px;
     background: var(--primary-color);
     color: #fff;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Expo-Bold', sans-serif; /* تطبيق الخط الثقيل */
     font-size: 17px;
-    font-weight: 700;
+    font-weight: bold;
     cursor: pointer;
     margin-top: 10px;
     transition: background 0.3s ease;
@@ -130,6 +130,7 @@
     font-size: 14px;
     margin-top: 15px;
     transition: color 0.3s;
+    font-family: 'Expo-Regular', sans-serif; /* تطبيق الخط الأساسي */
 }
 
 .card-content a:hover {
