@@ -38,7 +38,7 @@ body {
     align-items: center;
     justify-content: center;
     color: #fff;
-    overflow: hidden; /* تم تغييرها في .auth-body */
+    overflow: hidden; 
     direction: rtl; 
 }
 
@@ -84,7 +84,6 @@ body {
     opacity: 0.9;
 }
 
-/* تطبيق خط Expo-Bold على عنوان اللوجو */
 .logo h2 {
     font-family: 'Expo-Bold', sans-serif; 
     font-size: 20px;
@@ -192,7 +191,6 @@ header {
     margin-bottom: 30px;
 }
 
-/* تطبيق خط Expo-Bold على العناوين الكبيرة */
 header h1 {
     font-family: 'Expo-Bold', sans-serif; 
     font-size: 32px;
@@ -207,7 +205,6 @@ header p {
 
 /* -------------------- المشاريع والبطاقات (Project Cards) -------------------- */
 
-/* تطبيق خط Expo-Bold على العناوين المتوسطة */
 .featured-projects h2, .request-form-section h2 {
     font-family: 'Expo-Bold', sans-serif; 
     font-size: 28px;
@@ -247,7 +244,6 @@ header p {
     margin-bottom: 15px;
 }
 
-/* تطبيق خط Expo-Bold على عناوين المشاريع داخل البطاقة */
 .project-card .card-info h3 {
     font-family: 'Expo-Bold', sans-serif; 
     font-size: 20px;
@@ -332,7 +328,6 @@ header p {
     color: #fff;
 }
 
-/* تطبيق خط Expo-Bold على زر الإرسال */
 .submit-btn {
     font-family: 'Expo-Bold', sans-serif; 
     display: block;
@@ -356,7 +351,7 @@ header p {
     transform: scale(0.99);
 }
 
-/* -------------------- تنسيق صفحات المصادقة (Login/Signup) -------------------- */
+/* -------------------- تنسيق صفحات المصادقة (Auth Page) -------------------- */
 .auth-body {
     background: linear-gradient(135deg, #2a2a72 0%, #009ffd 74%);
     min-height: 100vh;
@@ -367,30 +362,7 @@ header p {
     overflow-y: auto; 
     overflow-x: hidden;
     direction: rtl; 
-}
-
-.auth-card {
-    width: 400px;
-    max-width: 90%;
-    padding: 40px;
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
-    border-radius: 24px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    text-align: right;
-}
-
-.auth-card h2 {
-    font-family: 'Expo-Bold', sans-serif; 
-    margin-bottom: 25px;
-    font-size: 28px;
-    text-align: center;
-}
-
-.auth-card a {
-    text-decoration: none;
+    perspective: 1500px; /* لإعطاء عمق لـ auth-container */
 }
 
 /* -------------------- تعديلات متجاوبة (Responsive) -------------------- */
@@ -442,10 +414,6 @@ header p {
     
     .card-container {
         grid-template-columns: 1fr;
-    }
-
-    .auth-card {
-        padding: 25px;
     }
 }
 
