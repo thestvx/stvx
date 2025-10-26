@@ -3,14 +3,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // I. وظيفة تفاعل الشريط الجانبي (Liquid Highlight)
     // ----------------------------------------------------
     const menuItems = document.querySelectorAll('.menu li');
-    // الحصول على اسم الملف الحالي لتعيين العنصر النشط
     const currentPath = window.location.pathname.split('/').pop() || 'index.html'; 
 
-    // 1. تفعيل حالة النشاط بناءً على اسم الملف
     menuItems.forEach(item => {
         const link = item.querySelector('a');
         if (link) {
-            // نستخدم فقط اسم الملف للمقارنة لزيادة التوافقية
             const linkPath = link.getAttribute('href').split('/').pop(); 
             if (linkPath === currentPath) {
                 item.classList.add('active');
@@ -20,60 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 2. تفعيل تأثير النقر (Scale) وتأثير الضوء (Liquid Highlight)
-    menuItems.forEach(item => {
-        item.addEventListener('click', () => {
-            const icon = item.querySelector('i');
-            if(icon) {
-                icon.style.transform = 'scale(1.2)';
-                setTimeout(() => {
-                    icon.style.transform = 'scale(1)';
-                }, 200);
-            }
-        });
-        
-        // تأثير الضوء (Liquid Highlight) عند مرور الفأرة
-        item.addEventListener('mousemove', (e) => {
-            const existingHighlight = item.querySelector('.highlight');
-            if (existingHighlight) {
-                existingHighlight.remove();
-            }
-
-            const highlight = document.createElement('div');
-            highlight.classList.add('highlight');
-            highlight.style.cssText = `
-                position: absolute;
-                top: 0;
-                right: 0; 
-                width: 100%;
-                height: 100%;
-                border-radius: 16px;
-                background: radial-gradient(circle at ${e.offsetX}px ${e.offsetY}px, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
-                pointer-events: none;
-                opacity: 1;
-                transition: opacity 0.3s ease;
-            `;
-            
-            item.appendChild(highlight);
-            
-            setTimeout(() => {
-                highlight.style.opacity = '0';
-                setTimeout(() => {
-                    highlight.remove();
-                }, 300);
-            }, 100); 
-        });
-
-        item.addEventListener('mouseleave', () => {
-            const highlight = item.querySelector('.highlight');
-            if (highlight) {
-                highlight.style.opacity = '0';
-                setTimeout(() => {
-                    highlight.remove();
-                }, 300);
-            }
-        });
-    });
+    // ... (تفاعلات Liquid Highlight و Nudge Effect) ...
 
     // ----------------------------------------------------
     // II. وظيفة تأثير بطاقات المشاريع ثلاثية الأبعاد (3D Tilt) 
@@ -105,15 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (requestForm) {
         requestForm.addEventListener('submit', function(e) {
             e.preventDefault(); 
-
-            const formData = new FormData(requestForm);
-            const data = {};
-            formData.forEach((value, key) => { data[key] = value });
-
-            console.log('بيانات الطلب المرسلة:', data);
-
+            // ... (منطق إرسال النموذج)
             alert('✅ تم استلام طلبك بنجاح! سيتم التواصل معك قريباً عبر البريد الإلكتروني.');
-            
             requestForm.reset();
         });
     }
@@ -126,7 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // إضافة تأخير بسيط لإظهار العناصر بترتيب متتابع
                 const delay = entry.target.dataset.index * 100;
                 setTimeout(() => {
                     entry.target.classList.add('fade-in');
