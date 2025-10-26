@@ -1,6 +1,6 @@
 /* -------------------- إعدادات الحاوية الرئيسية (3D) -------------------- */
 .auth-container {
-    width: 650px; /* عرض مناسب للحاوية التي تحمل البطاقتين */
+    width: 650px; 
     height: 480px;
     position: relative;
     transform-style: preserve-3d;
@@ -8,23 +8,20 @@
     direction: rtl; 
 }
 
-/* حالة الفليب (Flip) للتبديل بين تسجيل الدخول والتسجيل */
 .auth-container.show-register {
     transform: rotateY(-180deg);
 }
 
-/* إخفاء نماذج الدخول/التسجيل عند إظهار الاستعادة */
 .auth-container.show-recovery .login-form,
 .auth-container.show-recovery .register-form {
     opacity: 0;
     pointer-events: none;
 }
 
-/* إظهار بطاقة الاستعادة */
 .auth-container.show-recovery .recovery-card {
     opacity: 1;
     pointer-events: auto;
-    transform: perspective(1000px) rotateY(0deg) translateZ(0px); /* إلغاء دوران الاستعادة والـ 3D */
+    transform: perspective(1000px) rotateY(0deg) translateZ(0px); 
 }
 
 /* -------------------- تنسيق النماذج والبطاقات -------------------- */
@@ -40,7 +37,6 @@
     padding: 20px;
 }
 
-/* وضعية البداية لبطاقات 3D */
 .login-form {
     transform: rotateY(0deg) translateZ(0px); 
 }
@@ -60,7 +56,7 @@
 .auth-card {
     width: 380px;
     padding: 30px;
-    background: rgba(255, 255, 255, 0.08); /* الزجاجية */
+    background: rgba(255, 255, 255, 0.08); 
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-radius: 20px;
