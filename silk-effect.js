@@ -74,8 +74,12 @@ void main() {
 
 // -------------------- 2. Three.js Setup --------------------
 function initSilkEffect() {
+    // 🛑 تأكد من أن THREE معرفة قبل محاولة استخدامها
     const canvas = document.getElementById('silkCanvas');
-    if (!canvas) return;
+    if (!canvas || typeof THREE === 'undefined') {
+        console.error("Canvas element or THREE.js library not found.");
+        return; 
+    }
 
     // Parameters 
     const speed = 5;
