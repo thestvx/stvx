@@ -1,12 +1,11 @@
 /*
- * Blue Ocean Login Design
- * Created by: TheDoc - Customized for STVX RTL by خبير/ة البرمجة
- * Blue Theme by خبير/ة البرمجة
+ * Forest Login Design
+ * Created by: TheDoc - Updated to RTL by خبير/ة البرمجة
+ * Green Theme
  * Crafted with precision and style
  */
 
 /* -------------------- 0. الخطوط المخصصة -------------------- */
-/* يجب التأكد من أن ملفي الخطوط موجودان في مجلد "fonts" */
 @font-face {
     font-family: 'Expo-Bold';
     src: url('fonts/Expo-Bold.ttf') format('truetype');
@@ -28,21 +27,21 @@
 }
 
 :root {
-    /* -------------------- متغيرات الألوان الزرقاء الباردة -------------------- */
-    --primary-gradient: linear-gradient(135deg, #4A90E2 0%, #2E73B5 100%); /* أزرق أساسي */
-    --secondary-gradient: linear-gradient(135deg, #5C9CEB 0%, #3F7FC7 100%); /* أزرق ثانوي */
-    --success-gradient: linear-gradient(135deg, #7CBCE2 0%, #4A90E2 100%); /* أزرق للنجاح */
+    /* -------------------- متغيرات الألوان الخضراء الأصلية -------------------- */
+    --primary-gradient: linear-gradient(135deg, #4CAF50 0%, #388E3C 100%); /* أخضر أساسي */
+    --secondary-gradient: linear-gradient(135deg, #8BC34A 0%, #689F38 100%); /* أخضر ثانوي */
+    --success-gradient: linear-gradient(135deg, #8BC34A 0%, #4CAF50 100%); /* أخضر للنجاح */
     
-    --glass-bg: rgba(0, 0, 0, 0.25); /* خلفية زجاجية شفافة */
-    --glass-border: rgba(100, 150, 200, 0.4); /* حدود زجاجية زرقاء فاتحة */
+    --glass-bg: rgba(255, 255, 255, 0.25); /* خلفية زجاجية شفافة */
+    --glass-border: rgba(255, 255, 255, 0.4); /* حدود زجاجية */
     
     --text-primary: #ffffff; /* نص أبيض */
-    --text-secondary: rgba(255, 255, 255, 0.9); /* نص أبيض شبه شفاف */
+    --text-secondary: rgba(255, 255, 255, 0.8); /* نص أبيض شبه شفاف */
     
-    --input-bg: rgba(0, 0, 0, 0.2); /* خلفية حقل الإدخال */
-    --input-border: rgba(100, 150, 200, 0.5); /* حدود حقل الإدخال */
+    --input-bg: rgba(255, 255, 255, 0.1); /* خلفية حقل الإدخال */
+    --input-border: rgba(255, 255, 255, 0.5); /* حدود حقل الإدخال */
     
-    --shadow: 0 8px 32px rgba(46, 115, 181, 0.4); /* ظل أزرق */
+    --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3); /* ظل غامق */
     
     --creator: "TheDoc";
     --signature: "TheDoc";
@@ -51,16 +50,14 @@
 }
 
 body {
-    /* تطبيق خط Expo-Regular المخصص */
     font-family: 'Expo-Regular', sans-serif;
     height: 100vh;
     overflow: hidden;
     position: relative;
-    /* تحديد الاتجاه من اليمين إلى اليسار (RTL) */
     direction: rtl; 
 }
 
-/* Wald Hintergrund */
+/* Forest Background */
 .background-container {
     position: fixed;
     top: 0;
@@ -69,26 +66,13 @@ body {
     height: 100%;
     z-index: -1;
     
-    background-image: url('https://img.freepik.com/fotos-kostenlos/oberflaechenansicht-der-ozeanwellen-bei-sonnenuntergang_23-2149544778.jpg?w=740&t=st=1720899002~exp=1720899602~hmac=6940a08e330a1c1d6368d5045610e6207b53982e5ee6f5825d5ce94ed7474765');
+    /* صورة غابة أو خضراء */
+    background-image: url('https://img.freepik.com/fotos-kostenlos/tiefes-gruen-des-waldes_181624-52648.jpg?w=740'); 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    animation: blueOceanGradient 15s ease infinite; 
-}
-
-.background-container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: 
-        radial-gradient(circle at 20% 80%, rgba(100, 150, 200, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(80, 130, 180, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(70, 110, 160, 0.2) 0%, transparent 50%);
-    animation: blueMovement 20s ease-in-out infinite; 
+    animation: forestMovement 15s ease infinite; 
 }
 
 .background-overlay {
@@ -100,15 +84,14 @@ body {
     background: linear-gradient(
         45deg,
         rgba(0, 0, 0, 0.5) 0%,
-        rgba(0, 30, 60, 0.35) 25%,
-        rgba(0, 40, 80, 0.25) 50%,
-        rgba(0, 30, 60, 0.35) 75%,
+        rgba(20, 50, 20, 0.35) 25%,
+        rgba(30, 60, 30, 0.25) 50%,
+        rgba(20, 50, 20, 0.35) 75%,
         rgba(0, 0, 0, 0.5) 100%
     );
     backdrop-filter: blur(3px);
 }
 
-/* Partikel Effekt */
 .particles {
     position: absolute;
     top: 0;
@@ -118,46 +101,26 @@ body {
     overflow: hidden;
 }
 
-.particles::before,
-.particles::after {
-    content: '';
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.5);
-    border-radius: 50%;
-    animation: float 6s linear infinite;
-}
-
-.particles::before {
-    top: 10%;
-    left: 20%;
-    animation-delay: 0s;
-}
-
-.particles::after {
-    top: 70%;
-    left: 80%;
-    animation-delay: 3s;
-}
-
-@keyframes blueOceanGradient { 
-    0% { background-position: 0% 50%; }
+/* Keyframes تبقى كما هي */
+@keyframes forestMovement { 
+    0%, 100% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
 }
 
-@keyframes blueMovement { 
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    33% { transform: translateY(-10px) rotate(1deg); }
-    66% { transform: translateY(5px) rotate(-1deg); }
+@keyframes pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
 }
 
-@keyframes float { 
-    0%, 100% { transform: translateY(0px) translateX(0px) scale(0); opacity: 0; }
-    10% { opacity: 1; scale: 1; }
-    90% { opacity: 1; scale: 1; }
-    100% { transform: translateY(-100vh) translateX(50px) scale(0); opacity: 0; }
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Container */
@@ -197,15 +160,10 @@ body {
     animation: pulse 2s ease-in-out infinite;
 }
 
-@keyframes pulse {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 1; }
-}
-
 /* Toggle Buttons */
 .toggle-container {
     display: flex;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.3);
     border-radius: 15px;
     padding: 5px;
     margin-bottom: 30px;
@@ -214,7 +172,6 @@ body {
 }
 
 .toggle-btn {
-    /* تطبيق خط Expo-Bold */
     font-family: 'Expo-Bold', sans-serif; 
     flex: 1;
     padding: 15px 20px;
@@ -236,7 +193,7 @@ body {
 .toggle-btn.active {
     color: var(--text-primary);
     background: var(--primary-gradient);
-    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.5); /* ظل أزرق متناسق */
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.5); /* ظل أخضر */
 }
 
 .toggle-btn:hover:not(.active) {
@@ -259,13 +216,7 @@ body {
     margin-bottom: 30px;
 }
 
-/* Kompakterer Header für Register-Form */
-#registerForm .form-header {
-    margin-bottom: 20px;
-}
-
 .form-header h2 {
-    /* تطبيق خط Expo-Bold */
     font-family: 'Expo-Bold', sans-serif; 
     color: var(--text-primary);
     font-size: 2rem;
@@ -293,7 +244,6 @@ body {
     flex: 1;
 }
 
-/* Kompaktere Abstände für Register-Form */
 #registerForm .input-group {
     margin-bottom: 16px;
 }
@@ -304,21 +254,18 @@ body {
 
 .input-container input {
     width: 100%;
-    /* تم عكس الترتيب لـ RTL: اليمين 45px (للكتابة)، اليسار 50px (للأيقونة/Toggle) */
     padding: 18px 45px 18px 50px; 
     background: var(--input-bg);
     border: 2px solid transparent;
     border-radius: 15px;
     color: var(--text-primary);
-    font-family: 'Expo-Regular', sans-serif; /* تطبيق خط Expo-Regular */
+    font-family: 'Expo-Regular', sans-serif; 
     font-size: 0.95rem;
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
-    /* تحديد اتجاه النص داخل الحقل ليتناسب مع RTL */
     text-align: right; 
 }
 
-/* Kompaktere Inputs für Register-Form */
 #registerForm .input-container input {
     padding: 15px 45px 15px 50px;
 }
@@ -330,14 +277,13 @@ body {
 .input-container input:focus {
     outline: none;
     border-color: var(--input-border);
-    background: rgba(100, 150, 200, 0.15); /* خلفية حقل الإدخال عند التركيز */
+    background: rgba(255, 255, 255, 0.15); 
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(74, 144, 226, 0.3); /* ظل أزرق عند التركيز */
+    box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3); /* ظل أخضر */
 }
 
 .input-icon {
     position: absolute;
-    /* نقل الأيقونة من اليسار (left) إلى اليمين (right) لـ RTL */
     right: 15px; 
     left: auto; 
     top: 50%;
@@ -349,13 +295,12 @@ body {
 
 .input-container input:focus + .input-icon,
 .input-container input:focus ~ .input-icon {
-    color: #4A90E2; /* أيقونة زرقاء عند التركيز */
+    color: #4CAF50; /* أيقونة خضراء عند التركيز */
 }
 
 .input-border {
     position: absolute;
     bottom: 0;
-    /* تعيين البداية لـ RTL */
     right: 0; 
     left: auto;
     width: 0;
@@ -370,7 +315,6 @@ body {
 
 .password-toggle {
     position: absolute;
-    /* نقل زر تبديل كلمة المرور من اليمين (right) إلى اليسار (left) لـ RTL */
     left: 15px; 
     right: auto;
     top: 50%;
@@ -390,7 +334,6 @@ body {
 /* Form Options */
 .form-options {
     display: flex;
-    /* عكس ترتيب العناصر لـ RTL */
     justify-content: space-between; 
     align-items: center;
     margin-bottom: 30px;
@@ -398,7 +341,6 @@ body {
     gap: 10px;
 }
 
-/* Kompaktere Form-Options für Register */
 #registerForm .form-options {
     margin-bottom: 20px;
 }
@@ -422,7 +364,6 @@ body {
     background: var(--input-bg);
     border: 2px solid var(--input-border);
     border-radius: 6px;
-    /* نقل الهامش من اليمين (right) إلى اليسار (left) لـ RTL */
     margin-right: 0;
     margin-left: 12px; 
     position: relative;
@@ -432,91 +373,43 @@ body {
     overflow: hidden;
 }
 
-.checkmark::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 6px;
-    height: 6px;
-    background: var(--primary-gradient);
-    border-radius: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    transition: all 0.3s ease;
-}
-
-.checkmark::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 6px;
-    height: 10px;
-    border: solid #e8f5e8;
-    border-width: 0 3px 3px 0;
-    transform: translate(-50%, -60%) rotate(45deg) scale(0);
-    opacity: 0;
-    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
 .checkbox-container:hover .checkmark {
-    border-color: #4A90E2; /* حدود زرقاء عند التحويم */
+    border-color: #4CAF50; 
     transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(74, 144, 226, 0.4); /* ظل أزرق عند التحويم */
+    box-shadow: 0 0 15px rgba(76, 175, 80, 0.4); 
 }
 
 .checkbox-container input:checked ~ .checkmark {
-    background: linear-gradient(135deg, #4A90E2 0%, #5C9CEB 50%, #2E73B5 100%); /* خلفية زرقاء عند التحديد */
+    background: linear-gradient(135deg, #4CAF50 0%, #8BC34A 50%, #388E3C 100%); 
     border-color: transparent;
     transform: scale(1);
-    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.5); /* ظل أزرق عند التحديد */
-    animation: checkboxPulse 0.6s ease;
-}
-
-.checkbox-container:active::after {
-    transform: translateY(-50%) scale(2);
-}
-
-@keyframes checkboxPulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.15); }
-    100% { transform: scale(1); }
-}
-
-.checkbox-container input:checked ~ .checkmark::before {
-    transform: translate(-50%, -50%) scale(0);
-}
-
-.checkbox-container input:checked ~ .checkmark::after {
-    opacity: 1;
-    transform: translate(-50%, -60%) rotate(45deg) scale(1);
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.5); 
 }
 
 .checkbox-container a {
-    color: #4A90E2; /* رابط أزرق */
+    color: #4CAF50; 
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .checkbox-container a:hover {
-    color: #5C9CEB; /* رابط أزرق أفتح عند التحويم */
+    color: #8BC34A; 
 }
 
 .forgot-password {
-    color: #4A90E2; /* رابط أزرق */
+    color: #4CAF50; 
     text-decoration: none;
     font-size: 0.9rem;
     transition: all 0.3s ease;
 }
 
 .forgot-password:hover {
-    color: #5C9CEB; /* رابط أزرق أفتح عند التحويم */
+    color: #8BC34A; 
     text-decoration: underline;
 }
 
 /* Submit Button */
 .submit-btn {
-    /* تطبيق خط Expo-Bold */
     font-family: 'Expo-Bold', sans-serif; 
     width: 100%;
     padding: 18px;
@@ -537,7 +430,6 @@ body {
     margin-bottom: 30px;
 }
 
-/* Kompaktere Abstände für Register-Form */
 #registerForm .submit-btn {
     margin-bottom: 20px;
     padding: 16px;
@@ -545,11 +437,7 @@ body {
 
 .submit-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(74, 144, 226, 0.5); /* ظل أزرق عند التحويم */
-}
-
-.submit-btn:active {
-    transform: translateY(0);
+    box-shadow: 0 10px 30px rgba(76, 175, 80, 0.5); 
 }
 
 .register-btn {
@@ -557,7 +445,7 @@ body {
 }
 
 .register-btn:hover {
-    box-shadow: 0 10px 30px rgba(92, 156, 235, 0.5); /* ظل أزرق عند التحويم */
+    box-shadow: 0 10px 30px rgba(139, 195, 74, 0.5); 
 }
 
 /* Social Login */
@@ -583,13 +471,11 @@ body {
 }
 
 .social-login p::before {
-    /* البداية من اليمين */
     right: 0;
     left: auto;
 }
 
 .social-login p::after {
-    /* النهاية في اليسار */
     left: 0;
     right: auto;
 }
@@ -616,23 +502,6 @@ body {
     color: var(--text-primary);
 }
 
-.social-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-}
-
-.social-btn.google:hover {
-    background: #db4437; 
-}
-
-.social-btn.facebook:hover {
-    background: #3b5998;
-}
-
-.social-btn.twitter:hover {
-    background: #1da1f2;
-}
-
 /* Success Message */
 .success-message {
     position: fixed;
@@ -650,133 +519,10 @@ body {
     transition: all 0.3s ease;
 }
 
-.success-message.show {
-    opacity: 1;
-    visibility: visible;
-}
-
-.success-content {
-    background: var(--glass-bg);
-    backdrop-filter: blur(20px);
-    border-radius: 20px;
-    border: 1px solid var(--glass-border);
-    padding: 40px;
-    text-align: center;
-    color: var(--text-primary);
-    box-shadow: var(--shadow);
-    transform: scale(0.8);
-    transition: transform 0.3s ease;
-}
-
-.success-message.show .success-content {
-    transform: scale(1);
-}
-
 .success-content i {
     font-size: 4rem;
-    color: #7CBCE2; /* لون أيقونة النجاح الأزرق */
+    color: #8BC34A; 
     margin-bottom: 20px;
-    animation: checkmark 0.6s ease;
-}
-
-.success-content h3 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    background: var(--success-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-@keyframes checkmark {
-    0% { transform: scale(0) rotate(45deg); }
-    50% { transform: scale(1.2) rotate(45deg); }
-    100% { transform: scale(1) rotate(45deg); }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* -------------------- 9. زر العودة (Home Button) -------------------- */
-
-.home-button {
-    /* تطبيق خط Expo-Bold */
-    font-family: 'Expo-Bold', sans-serif; 
-    position: absolute;
-    /* تثبيت الزر في الزاوية العلوية اليمنى لـ RTL */
-    top: 30px;
-    right: 30px; 
-    left: auto;
-    
-    background-color: var(--text-primary); /* خلفية بيضاء */
-    color: #1a1a1a; /* لون النص */
-    text-align: center;
-    width: 200px; /* w-48 */
-    height: 56px; /* h-14 */
-    border-radius: 16px; /* rounded-2xl */
-    font-size: 1.25rem; /* text-xl */
-    font-weight: 600; /* font-semibold */
-    text-decoration: none;
-    cursor: pointer;
-    border: none;
-    z-index: 10;
-    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    overflow: hidden;
-    transition: all 0.5s ease;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.button-icon-container {
-    /* حاوية الأيقونة - الألوان الزرقاء الباردة الجديدة */
-    background: var(--primary-gradient); 
-    border-radius: 12px; /* rounded-xl */
-    height: 48px; /* h-12 */
-    width: 25%; /* w-1/4 */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    /* لـ RTL: تثبيت الأيقونة في اليمين (right) */
-    right: 4px;
-    left: auto; 
-    top: 4px; 
-    z-index: 11;
-    transition: width 0.5s cubic-bezier(0.19, 1, 0.22, 1); /* تأثير انسيابي */
-}
-
-.home-button:hover .button-icon-container {
-    width: 192px; /* w-[184px] - توسيع الحاوية عند التحويم */
-}
-
-.button-icon-container svg path {
-    fill: var(--text-primary); /* الأيقونة باللون الأبيض */
-}
-
-.button-text {
-    /* لـ RTL: تحريك النص قليلاً إلى اليسار */
-    transform: translateX(-8px); 
-    z-index: 12;
-    transition: transform 0.5s ease;
-}
-
-.home-button:hover .button-text {
-    /* عند التحويم، يصبح أبيض ليظهر فوق الخلفية الزرقاء المتوسعة */
-    color: var(--text-primary); 
-    /* عند التحويم، يعود النص لمكانه الطبيعي */
-    transform: translateX(0);
-    transition: color 0.1s ease 0.3s; /* تأخير بسيط في تغيير لون النص */
 }
 
 
@@ -809,48 +555,113 @@ body {
     .social-buttons {
         gap: 10px;
     }
-    
-    .social-btn {
-        width: 45px;
-        height: 45px;
-        font-size: 1rem;
-    }
-
-    .home-button {
-        top: 15px;
-        right: 15px; 
-        width: 160px;
-        height: 50px;
-        font-size: 1.1rem;
-    }
-    
-    .button-icon-container {
-        height: 42px;
-    }
-
-    .home-button:hover .button-icon-container {
-        width: 152px;
-    }
 }
 
-@media (max-width: 480px) {
-    .glass-card {
-        padding: 25px 15px;
-        border-radius: 15px;
-    }
+
+/* -------------------- 7. تصميم زر العودة المتقدم (Based on Uiverse) -------------------- */
+
+.back-to-home-btn {
+    /* الموقع */
+    position: absolute;
+    top: 30px;
+    left: 30px; /* في اليسار ليكون عكس اتجاه RTL */
+    z-index: 100;
+
+    /* التنسيق الأساسي */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px; /* المسافة بين النص والأيقونة */
     
-    .toggle-btn {
-        padding: 12px 15px;
-        font-size: 0.9rem;
-    }
+    font-size: 1.1rem; 
+    padding: 8px 20px;
+    border-radius: 9999px; /* rounded-full */
+    border: 2px solid rgba(255, 255, 255, 0.4); /* border-gray-50 */
+    background: rgba(255, 255, 255, 0.2); /* bg-gray-50 backdrop-blur-md */
+    backdrop-filter: blur(8px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
+    color: var(--text-primary); 
+    text-decoration: none;
+    font-weight: 600;
     
-    .input-container input {
-        padding: 15px 45px 15px 40px;
-        font-size: 0.9rem;
-    }
+    position: relative;
+    overflow: hidden;
+    transition: color 0.3s ease-out; /* انتقال لون النص */
+}
+
+/* العنصر الزائف (before) المسؤول عن الحركة الدائرية */
+.back-to-home-btn::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    aspect-ratio: 1; /* لجعلها دائرة */
+    border-radius: 50%;
+    background: var(--secondary-gradient); /* اللون الأخضر (Emerald-500) */
     
-    .submit-btn {
-        padding: 15px;
-        font-size: 0.95rem;
+    /* الحركة: تبدأ خارج الزر، وتنتقل لليمين عند التمرير */
+    transition: all 0.7s ease;
+    left: -100%;
+    top: 50%;
+    transform: translateY(-50%) scale(0.1); /* تصغير البداية */
+    
+    z-index: -1;
+}
+
+/* تأثير التمرير (Hover Effect) */
+.back-to-home-btn:hover {
+    color: var(--sidebar-bg); /* hover:text-gray-50 */
+}
+
+.back-to-home-btn:hover::before {
+    left: 0;
+    transform: translateY(-50%) scale(1.5); /* تكبير الدائرة لملء الزر */
+}
+
+/* الأيقونة (SVG) */
+.btn-icon {
+    width: 25px; 
+    height: 25px; 
+    padding: 4px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.6); /* border-gray-700 */
+    
+    /* عكس الأيقونة لتناسب العودة */
+    transform: rotate(225deg); /* rotate-45 (للعودة) */
+    
+    /* الألوان الأساسية */
+    background: transparent;
+    transition: all 0.3s ease-in-out;
+}
+
+/* تعبئة الأيقونة */
+.icon-fill {
+    fill: var(--text-primary); 
+    transition: fill 0.3s ease-in-out;
+}
+
+/* تأثير التمرير على الأيقونة */
+.back-to-home-btn:hover .btn-icon {
+    transform: rotate(315deg); /* group-hover:rotate-90 */
+    background-color: var(--sidebar-bg); /* group-hover:bg-gray-50 */
+    border: none;
+}
+
+/* تعبئة الأيقونة عند التمرير */
+.back-to-home-btn:hover .icon-fill {
+    fill: #333333; /* group-hover:fill-gray-800 */
+}
+
+
+/* تعديل على الأجهزة الصغيرة */
+@media (max-width: 768px) {
+    .back-to-home-btn {
+        top: 15px;
+        left: 15px; 
+        padding: 6px 15px;
+        font-size: 1rem;
+    }
+    .btn-icon {
+        width: 20px;
+        height: 20px;
     }
 }
