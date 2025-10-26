@@ -1,161 +1,758 @@
-/* -------------------- إعدادات الحاوية الرئيسية (3D) -------------------- */
-.auth-container {
-    width: 650px; 
-    height: 480px;
+/*
+ * Forest Login Design
+ * Created by: TheDoc - Customized for STVX RTL by خبير/ة البرمجة
+ * Crafted with precision and style
+ */
+
+/* -------------------- 0. الخطوط المخصصة -------------------- */
+/* يجب التأكد من أن ملفي الخطوط موجودان في مجلد "fonts" */
+@font-face {
+    font-family: 'Expo-Bold';
+    src: url('fonts/Expo-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Expo-Regular';
+    src: url('fonts/Expo-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-gradient: linear-gradient(135deg, #4a7c23 0%, #2d5016 100%);
+    --secondary-gradient: linear-gradient(135deg, #568d27 0%, #3d6b1f 100%);
+    --success-gradient: linear-gradient(135deg, #7fb069 0%, #4a7c23 100%);
+    --glass-bg: rgba(0, 0, 0, 0.25);
+    --glass-border: rgba(120, 150, 70, 0.4);
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.9);
+    --input-bg: rgba(0, 0, 0, 0.2);
+    --input-border: rgba(120, 150, 70, 0.5);
+    --shadow: 0 8px 32px rgba(45, 80, 22, 0.4);
+    --creator: "TheDoc";
+    --signature: "TheDoc";
+    --watermark: "VGhlRG9j";
+    --architect: "TheDoc-2025-07-06";
+}
+
+body {
+    /* تطبيق خط Expo-Regular المخصص */
+    font-family: 'Expo-Regular', sans-serif;
+    height: 100vh;
+    overflow: hidden;
     position: relative;
-    transform-style: preserve-3d;
-    transition: transform 1s ease-in-out;
+    /* تحديد الاتجاه من اليمين إلى اليسار (RTL) */
     direction: rtl; 
 }
 
-/* حالة الفليب (Flip) للتبديل بين تسجيل الدخول والتسجيل */
-.auth-container.show-register {
-    transform: rotateY(-180deg);
-}
-
-/* إخفاء نماذج الدخول/التسجيل عند إظهار الاستعادة */
-.auth-container.show-recovery .login-form,
-.auth-container.show-recovery .register-form {
-    opacity: 0;
-    pointer-events: none;
-}
-
-/* إظهار بطاقة الاستعادة */
-.auth-container.show-recovery .recovery-card {
-    opacity: 1;
-    pointer-events: auto;
-    transform: perspective(1000px) rotateY(0deg) translateZ(0px); 
-}
-
-/* -------------------- تنسيق النماذج والبطاقات -------------------- */
-.auth-form, .recovery-card {
-    position: absolute;
+/* Wald Hintergrund */
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    backface-visibility: hidden;
-    transition: transform 1s, opacity 0.5s;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
+    z-index: -1;
+    
+    background-image: url('https://img.freepik.com/fotos-kostenlos/wunderschoene-aufnahme-eines-waldes-mit-hohen-gruenen-baeumen_181624-20615.jpg?semt=ais_hybrid&w=740');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    animation: forestGradient 15s ease infinite;
 }
 
-.login-form {
-    transform: rotateY(0deg) translateZ(0px); 
-}
-
-.register-form {
-    transform: rotateY(180deg) translateZ(0px); 
-}
-
-.recovery-card {
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    pointer-events: none;
-    transform: rotateY(0deg);
-}
-
-.auth-card {
-    width: 380px;
-    padding: 30px;
-    background: rgba(255, 255, 255, 0.08); 
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-    position: relative;
-    overflow: hidden;
-    transition: all 0.5s ease;
-}
-
-/* -------------------- التنسيقات الداخلية -------------------- */
-.auth-card h2 {
-    font-family: 'Expo-Bold', sans-serif; /* تطبيق الخط الثقيل */
-    font-size: 26px;
-    text-align: center;
-    margin-bottom: 25px;
-    color: #fff;
-    font-weight: bold;
-}
-
-.auth-input input {
-    width: 100%;
-    padding: 12px 15px;
-    margin-bottom: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff;
-    font-family: 'Expo-Regular', sans-serif; /* تطبيق الخط الأساسي */
-    font-size: 15px;
-    transition: border-color 0.3s;
-}
-
-.auth-input input:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 5px rgba(0, 102, 255, 0.5);
-}
-
-.auth-input input::placeholder {
-    color: rgba(255, 255, 255, 0.7);
-}
-
-.auth-button {
-    width: 100%;
-    padding: 12px;
-    border: none;
-    border-radius: 10px;
-    background: var(--primary-color);
-    color: #fff;
-    font-family: 'Expo-Bold', sans-serif; /* تطبيق الخط الثقيل */
-    font-size: 17px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: background 0.3s ease;
-}
-
-.auth-button:hover {
-    background: #004ecc;
-}
-
-.card-content a {
-    display: block;
-    text-align: center;
-    color: rgba(255, 255, 255, 0.8);
-    text-decoration: none;
-    font-size: 14px;
-    margin-top: 15px;
-    transition: color 0.3s;
-    font-family: 'Expo-Regular', sans-serif; /* تطبيق الخط الأساسي */
-}
-
-.card-content a:hover {
-    color: var(--primary-color);
-}
-
-/* -------------------- تأثير الإضاءة (Glare) -------------------- */
-.card-glare {
+.background-container::before {
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none;
-    transition: background 0.05s linear;
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(120, 150, 70, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(100, 130, 50, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(90, 120, 40, 0.2) 0%, transparent 50%);
+    animation: forestMovement 20s ease-in-out infinite;
 }
 
-/* -------------------- Responsive -------------------- */
-@media (max-width: 680px) {
-    .auth-container {
-        width: 100%;
-        height: 500px;
+.background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        45deg,
+        rgba(0, 0, 0, 0.5) 0%,
+        rgba(0, 60, 0, 0.35) 25%,
+        rgba(0, 80, 0, 0.25) 50%,
+        rgba(0, 60, 0, 0.35) 75%,
+        rgba(0, 0, 0, 0.5) 100%
+    );
+    backdrop-filter: blur(3px);
+}
+
+/* Partikel Effekt */
+.particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.particles::before,
+.particles::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    animation: float 6s linear infinite;
+}
+
+.particles::before {
+    top: 10%;
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.particles::after {
+    top: 70%;
+    left: 80%;
+    animation-delay: 3s;
+}
+
+@keyframes forestGradient /* TheDoc's forest magic */ {
+    0% { background-position: 0% 50%; /* TheDoc start */ }
+    50% { background-position: 100% 50%; /* TheDoc middle */ }
+    100% { background-position: 0% 50%; /* TheDoc end */ }
+}
+
+@keyframes forestMovement /* Animated by TheDoc */ {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    33% { transform: translateY(-10px) rotate(1deg); }
+    66% { transform: translateY(5px) rotate(-1deg); }
+}
+
+@keyframes float /* TheDoc's particles */ {
+    0%, 100% { transform: translateY(0px) translateX(0px) scale(0); opacity: 0; }
+    10% { opacity: 1; scale: 1; }
+    90% { opacity: 1; scale: 1; }
+    100% { transform: translateY(-100vh) translateX(50px) scale(0); opacity: 0; }
+}
+
+/* Container */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Glaseffekt Card */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow);
+    padding: 40px;
+    width: 100%;
+    max-width: 450px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--primary-gradient);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+/* Toggle Buttons */
+.toggle-container {
+    display: flex;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    padding: 5px;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.toggle-btn /* TheDoc's toggle magic */ {
+    /* تطبيق خط Expo-Bold */
+    font-family: 'Expo-Bold', sans-serif; 
+    flex: 1;
+    padding: 15px 20px;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease; 
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.toggle-btn.active {
+    color: var(--text-primary);
+    background: var(--primary-gradient);
+    box-shadow: 0 4px 15px rgba(74, 124, 35, 0.5);
+}
+
+.toggle-btn:hover:not(.active) {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Form Container */
+.form-container {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.form-container.active {
+    display: block;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Kompakterer Header für Register-Form */
+#registerForm .form-header {
+    margin-bottom: 20px;
+}
+
+.form-header h2 /* TheDoc's gradient text art */ {
+    /* تطبيق خط Expo-Bold */
+    font-family: 'Expo-Bold', sans-serif; 
+    color: var(--text-primary);
+    font-size: 2rem;
+    font-weight: bold; 
+    margin-bottom: 10px;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.form-header p /* TheDoc's subtitle styling */ {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+/* Input Styles */
+.input-row {
+    display: flex;
+    gap: 15px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    flex: 1;
+}
+
+/* Kompaktere Abstände für Register-Form */
+#registerForm .input-group {
+    margin-bottom: 16px;
+}
+
+.input-container {
+    position: relative;
+}
+
+.input-container input {
+    width: 100%;
+    /* تم عكس الترتيب لـ RTL: اليمين 45px (للكتابة)، اليسار 50px (للأيقونة/Toggle) */
+    padding: 18px 45px 18px 50px; 
+    background: var(--input-bg);
+    border: 2px solid transparent;
+    border-radius: 15px;
+    color: var(--text-primary);
+    font-family: 'Expo-Regular', sans-serif; /* تطبيق خط Expo-Regular */
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    /* تحديد اتجاه النص داخل الحقل ليتناسب مع RTL */
+    text-align: right; 
+}
+
+/* Kompaktere Inputs für Register-Form */
+#registerForm .input-container input {
+    padding: 15px 45px 15px 50px;
+}
+
+.input-container input::placeholder {
+    color: var(--text-secondary);
+}
+
+.input-container input:focus {
+    outline: none;
+    border-color: var(--input-border);
+    background: rgba(120, 150, 70, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(74, 124, 35, 0.3);
+}
+
+.input-icon {
+    position: absolute;
+    /* نقل الأيقونة من اليسار (left) إلى اليمين (right) لـ RTL */
+    right: 15px; 
+    left: auto; 
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.input-container input:focus + .input-icon,
+.input-container input:focus ~ .input-icon {
+    color: #4a7c23;
+}
+
+.input-border {
+    position: absolute;
+    bottom: 0;
+    /* تعيين البداية لـ RTL */
+    right: 0; 
+    left: auto;
+    width: 0;
+    height: 2px;
+    background: var(--primary-gradient);
+    transition: width 0.3s ease;
+}
+
+.input-container input:focus ~ .input-border {
+    width: 100%;
+}
+
+.password-toggle {
+    position: absolute;
+    /* نقل زر تبديل كلمة المرور من اليمين (right) إلى اليسار (left) لـ RTL */
+    left: 15px; 
+    right: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.password-toggle:hover {
+    color: var(--text-primary);
+}
+
+/* Form Options */
+.form-options {
+    display: flex;
+    /* عكس ترتيب العناصر لـ RTL */
+    justify-content: space-between; 
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Kompaktere Form-Options für Register */
+#registerForm .form-options {
+    margin-bottom: 20px;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    position: relative;
+}
+
+.checkbox-container input {
+    display: none;
+}
+
+.checkmark {
+    width: 20px;
+    height: 20px;
+    background: var(--input-bg);
+    border: 2px solid var(--input-border);
+    border-radius: 6px;
+    /* نقل الهامش من اليمين (right) إلى اليسار (left) لـ RTL */
+    margin-right: 0;
+    margin-left: 12px; 
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.checkmark::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    background: var(--primary-gradient);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: all 0.3s ease;
+}
+
+.checkmark::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 6px;
+    height: 10px;
+    border: solid #e8f5e8;
+    border-width: 0 3px 3px 0;
+    transform: translate(-50%, -60%) rotate(45deg) scale(0);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.checkbox-container:hover .checkmark {
+    border-color: #4a7c23;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(74, 124, 35, 0.4);
+}
+
+.checkbox-container input:checked ~ .checkmark {
+    background: linear-gradient(135deg, #4a7c23 0%, #568d27 50%, #2d5016 100%);
+    border-color: transparent;
+    transform: scale(1);
+    box-shadow: 0 4px 15px rgba(74, 124, 35, 0.5);
+    animation: checkboxPulse 0.6s ease;
+}
+
+.checkbox-container:active::after {
+    transform: translateY(-50%) scale(2);
+}
+
+@keyframes checkboxPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+
+.checkbox-container input:checked ~ .checkmark::before {
+    transform: translate(-50%, -50%) scale(0);
+}
+
+.checkbox-container input:checked ~ .checkmark::after {
+    opacity: 1;
+    transform: translate(-50%, -60%) rotate(45deg) scale(1);
+}
+
+.checkbox-container a {
+    color: #4a7c23;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.checkbox-container a:hover {
+    color: #568d27;
+}
+
+.forgot-password {
+    color: #4a7c23;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.forgot-password:hover {
+    color: #568d27;
+    text-decoration: underline;
+}
+
+/* Submit Button */
+.submit-btn {
+    /* تطبيق خط Expo-Bold */
+    font-family: 'Expo-Bold', sans-serif; 
+    width: 100%;
+    padding: 18px;
+    background: var(--primary-gradient);
+    border: none;
+    border-radius: 15px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-weight: bold; 
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+/* Kompakterer Submit-Button für Register */
+#registerForm .submit-btn {
+    margin-bottom: 20px;
+    padding: 16px;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(74, 124, 35, 0.5);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+.register-btn {
+    background: var(--secondary-gradient);
+}
+
+.register-btn:hover {
+    box-shadow: 0 10px 30px rgba(86, 141, 39, 0.5);
+}
+
+/* Social Login */
+.social-login {
+    text-align: center;
+}
+
+.social-login p {
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    position: relative;
+}
+
+.social-login p::before,
+.social-login p::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 30%;
+    height: 1px;
+    background: var(--input-border);
+}
+
+.social-login p::before {
+    /* البداية من اليمين */
+    right: 0;
+    left: auto;
+}
+
+.social-login p::after {
+    /* النهاية في اليسار */
+    left: 0;
+    right: auto;
+}
+
+.social-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    background: var(--input-bg);
+    backdrop-filter: blur(10px);
+    color: var(--text-primary);
+}
+
+.social-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.social-btn.google:hover {
+    background: #db4437;
+}
+
+.social-btn.facebook:hover {
+    background: #3b5998;
+}
+
+.social-btn.twitter:hover {
+    background: #1da1f2;
+}
+
+/* Success Message */
+.success-message {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.success-message.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.success-content {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+    padding: 40px;
+    text-align: center;
+    color: var(--text-primary);
+    box-shadow: var(--shadow);
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+}
+
+.success-message.show .success-content {
+    transform: scale(1);
+}
+
+.success-content i {
+    font-size: 4rem;
+    color: #7fb069;
+    margin-bottom: 20px;
+    animation: checkmark 0.6s ease;
+}
+
+.success-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    background: var(--success-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+@keyframes checkmark {
+    0% { transform: scale(0) rotate(45deg); }
+    50% { transform: scale(1.2) rotate(45deg); }
+    100% { transform: scale(1) rotate(45deg); }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
     }
-    .auth-card {
-        width: 90%;
-        padding: 25px;
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .glass-card {
+        padding: 30px 20px;
+        max-width: 100%;
+    }
+    
+    .form-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .input-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .form-options {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .social-buttons {
+        gap: 10px;
+    }
+    
+    .social-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .glass-card {
+        padding: 25px 15px;
+        border-radius: 15px;
+    }
+    
+    .toggle-btn {
+        padding: 12px 15px;
+        font-size: 0.9rem;
+    }
+    
+    .input-container input {
+        padding: 15px 45px 15px 40px;
+        font-size: 0.9rem;
+    }
+    
+    .submit-btn {
+        padding: 15px;
+        font-size: 0.95rem;
     }
 }
