@@ -3,91 +3,427 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STVX | الرئيسية</title>
-    <link rel="stylesheet" href="style.css"> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>STVX | الصفحة الرئيسية</title>
+    <meta name="description" content="واجهة رئيسية بتصميم زجاجي وتأثير نص دوار.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* -------------------- 0. الخطوط المخصصة والمتغيرات الأساسية (مأخوذة من auth.css) -------------------- */
+        
+        @font-face {
+            font-family: 'Expo-Bold';
+            src: url('fonts/Expo-Bold.ttf') format('truetype');
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Expo-Regular';
+            src: url('fonts/Expo-Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* متغيرات الألوان الزرقاء الباردة */
+            --primary-gradient: linear-gradient(135deg, #4A90E2 0%, #2E73B5 100%);
+            --glass-bg: rgba(0, 0, 0, 0.25);
+            --glass-border: rgba(100, 150, 200, 0.4);
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.9);
+            --shadow: 0 8px 32px rgba(46, 115, 181, 0.4);
+        }
+
+        body {
+            font-family: 'Expo-Regular', sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            direction: rtl; 
+        }
+
+        /* -------------------- 1. الخلفية والحركة (مأخوذة من auth.css) -------------------- */
+
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: url('https://img.freepik.com/fotos-kostenlos/oberflaechenansicht-der-ozeanwellen-bei-sonnenuntergang_23-2149544778.jpg?w=740&t=st=1720899002~exp=1720899602~hmac=6940a08e330a1c1d6368d5045610e6207b53982e5ee6f5825d5ce94ed7474765');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            animation: blueOceanGradient 15s ease infinite;
+        }
+
+        .background-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(100, 150, 200, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(80, 130, 180, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(70, 110, 160, 0.2) 0%, transparent 50%);
+            animation: blueMovement 20s ease-in-out infinite;
+        }
+
+        .background-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                45deg,
+                rgba(0, 0, 0, 0.5) 0%,
+                rgba(0, 30, 60, 0.35) 25%,
+                rgba(0, 40, 80, 0.25) 50%,
+                rgba(0, 30, 60, 0.35) 75%,
+                rgba(0, 0, 0, 0.5) 100%
+            );
+            backdrop-filter: blur(3px);
+        }
+        
+        @keyframes blueOceanGradient { 
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes blueMovement { 
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-10px) rotate(1deg); }
+            66% { transform: translateY(5px) rotate(-1deg); }
+        }
+        
+        /* -------------------- 2. تصميم Hero Section -------------------- */
+
+        .container-main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 60px 40px;
+            width: 100%;
+            max-width: 800px;
+            
+            /* Glassmorphism Styles */
+            background: var(--glass-bg); 
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            border: 1px solid var(--glass-border); 
+            box-shadow: var(--shadow); 
+            position: relative;
+            transition: all 0.5s ease;
+        }
+
+        .hero-section h1 {
+            font-family: 'Expo-Bold', sans-serif;
+            color: var(--text-primary);
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .hero-section p {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+
+        /* زر Call to Action */
+        .cta-button {
+            font-family: 'Expo-Bold', sans-serif; 
+            padding: 15px 30px;
+            background: var(--primary-gradient);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-block;
+            box-shadow: 0 4px 20px rgba(74, 144, 226, 0.6);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(74, 144, 226, 0.8);
+        }
+
+        /* -------------------- 3. تنسيقات النص الدوار (Rotating Text) -------------------- */
+
+        .rotating-text-container {
+            display: inline-block;
+            height: 1.3em; 
+            overflow: hidden; 
+            vertical-align: top; 
+            margin: 0 8px;
+            position: relative;
+        }
+
+        #rotatingTextDisplay {
+            display: inline-block;
+            position: relative;
+            height: 100%;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+        }
+
+        .rotating-text-element {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            opacity: 0;
+            transition: transform 0.5s cubic-bezier(0.17, 0.67, 0.83, 0.67), opacity 0.5s ease;
+        }
+
+        /* حركة الدخول (تأتي من الأسفل) */
+        .rotating-text-element.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+            animation: slideIn 0.6s ease-out forwards; 
+        }
+
+        /* حركة الخروج (تذهب إلى الأعلى) */
+        .rotating-text-element.animate-out {
+            opacity: 0;
+            transform: translateY(-100%);
+            animation: slideOut 0.5s ease-in forwards;
+        }
+
+        /* Keyframes لحركة النص الدوار */
+        @keyframes slideIn {
+            0% { transform: translateY(100%); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes slideOut {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100%); opacity: 0; }
+        }
+        
+        /* -------------------- 4. تصميم زر تسجيل الدخول (Login/Register Button) -------------------- */
+        
+        .login-button {
+            font-family: 'Expo-Bold', sans-serif; 
+            position: absolute;
+            top: 30px;
+            right: 30px; 
+            left: auto;
+            
+            background-color: var(--text-primary); 
+            color: #1a1a1a; 
+            text-align: center;
+            width: 200px; 
+            height: 56px; 
+            border-radius: 16px; 
+            font-size: 1.25rem; 
+            font-weight: 600; 
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            z-index: 10;
+            
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .button-icon-container {
+            background: var(--primary-gradient); 
+            border-radius: 12px; 
+            height: 48px; 
+            width: 25%; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            right: 4px;
+            left: auto; 
+            top: 4px; 
+            z-index: 11;
+            transition: width 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .login-button:hover .button-icon-container {
+            width: 192px; 
+        }
+
+        .button-icon-container svg path {
+            fill: var(--text-primary); 
+        }
+
+        .button-text {
+            transform: translateX(-8px); 
+            z-index: 12;
+            transition: transform 0.5s ease;
+        }
+
+        .login-button:hover .button-text {
+            color: var(--text-primary); 
+            transform: translateX(0);
+            transition: color 0.1s ease 0.3s; 
+        }
+        
+        /* -------------------- 5. تصميم متجاوب (Responsive) -------------------- */
+        
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+            .rotating-text-container {
+                height: 1.4em; 
+            }
+            .hero-section p {
+                font-size: 1rem;
+            }
+            .hero-section {
+                padding: 40px 20px;
+            }
+            .login-button {
+                top: 15px;
+                right: 15px; 
+                width: 160px;
+                height: 50px;
+                font-size: 1.1rem;
+            }
+            .button-icon-container {
+                height: 42px;
+            }
+            .login-button:hover .button-icon-container {
+                width: 152px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="container"> 
-        
-        <aside class="sidebar">
-            <div class="logo">
-                <i class="fas fa-cube"></i>
-                <h2>STVX</h2>
-            </div>
-            <nav class="menu">
-                <ul>
-                    <li class="active"><a href="index.html"><i class="fas fa-home"></i> <span>الرئيسية</span></a></li>
-                    <li><a href="projects.html"><i class="fas fa-project-diagram"></i> <span>معرض المشاريع</span></a></li>
-                    <li><a href="request.html"><i class="fas fa-file-contract"></i> <span>طلب خدمة</span></a></li>
-                    <li><a href="auth.html"><i class="fas fa-sign-in-alt"></i> <span>تسجيل الدخول</span></a></li>
-                </ul>
-            </nav>
-            <div class="profile">
-                <div class="avatar">
-                    <img src="your-profile-image.jpg" alt="Profile">
-                </div>
-                <div class="user-info">
-                    <h3>أهلاً بك!</h3>
-                    <p>زائر</p>
-                </div>
-            </div>
-        </aside>
 
-        <main class="content" id="home">
-            <header class="hidden-section">
-                <h1>مرحباً بك في STVX!</h1>
-                <p>منصتك الرائدة لخدمات تصميم وتطوير الويب.</p>
-            </header>
+    <a href="auth.html" class="login-button" title="تسجيل الدخول / حساب جديد">
+        <div class="button-icon-container">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" height="25px" width="25px">
+                <path d="M768 480H128a32 32 0 1 1 0-64h640a32 32 0 0 1 0 64z" fill="#ffffff"></path>
+                <path d="m751.248 512-265.408 265.344a32 32 0 0 1-45.312-45.312l288-288a32 32 0 0 1 0-45.312l-288-288a32 32 0 1 1 45.312 45.312L751.248 512z" fill="#ffffff"></path>
+            </svg>
+        </div>
+        <p class="button-text">دخول/تسجيل</p>
+    </a>
 
-            <section class="card-container hidden-section">
-                <div class="card">
-                    <div class="card-icon"><i class="fas fa-rocket"></i></div>
-                    <div class="card-info">
-                        <h3>100+</h3>
-                        <p>مشروع تم إنجازه</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-icon"><i class="fas fa-code"></i></div>
-                    <div class="card-info">
-                        <h3>خبرة</h3>
-                        <p>5 سنوات في المجال</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-icon"><i class="fas fa-user-tie"></i></div>
-                    <div class="card-info">
-                        <h3>10+</h3>
-                        <p>مطور ومصمم</p>
-                    </div>
-                </div>
-            </section>
-            
-            <section class="featured-projects hidden-section">
-                <h2>أبرز مشاريعنا</h2>
-                <div class="card-container">
-                    <div class="card project-card">
-                        <img src="project-1-placeholder.jpg" alt="مشروع ويب متكامل">
-                        <div class="card-info">
-                            <h3>تطبيق إدارة محتوى</h3>
-                            <p>نظام CMS متكامل مبني باستخدام React و Node.js.</p>
-                            <a href="projects.html#p1" class="view-btn">عرض التفاصيل</a>
-                        </div>
-                    </div>
-                    <div class="card project-card">
-                        <img src="project-2-placeholder.jpg" alt="متجر إلكتروني">
-                        <div class="card-info">
-                            <h3>متجر إلكتروني</h3>
-                            <p>منصة تجارة إلكترونية سريعة وموثوقة.</p>
-                            <a href="projects.html#p2" class="view-btn">عرض التفاصيل</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
+    <div class="background-container">
+        <div class="background-overlay"></div>
     </div>
 
-    <script src="script.js"></script>
+    <div class="container-main">
+        <header class="hero-section">
+            <h1>
+                نحن نطلق العنان لـ 
+                <span class="rotating-text-container">
+                    <span id="rotatingTextDisplay">
+                        </span>
+                </span>
+                اليوم.
+            </h1>
+            <p>أول منصة عربية تقدم حلولاً مبتكرة في مجال البرمجة والتصميم العصري.</p>
+            <a href="auth.html" class="cta-button">ابدأ الآن</a>
+        </header>
+    </div>
+    
+    <script>
+        // -------------------- JavaScript للنص الدوار --------------------
+        
+        const texts = [
+            "الابتكار", 
+            "التصميم",
+            "البرمجة",
+            "الإبداع",
+            "المستقبل"
+        ];
+
+        const rotationInterval = 2000; // 2 ثانية
+
+        let currentTextIndex = 0;
+        let intervalId;
+
+        // وظيفة تحويل النص
+        function rotateText() {
+            const rotatingElement = document.getElementById('rotatingTextDisplay');
+            if (!rotatingElement) return;
+
+            // 1. إنشاء العنصر الجديد الذي سيتم إدخاله (الكلمة التالية)
+            const newTextElement = document.createElement('span');
+            newTextElement.textContent = texts[currentTextIndex];
+            newTextElement.className = 'rotating-text-element';
+
+            // 2. تحديد العنصر القديم الذي سيتم إزالته
+            const oldTextElement = rotatingElement.querySelector('.rotating-text-element');
+
+            // 3. تطبيق الحركة
+            if (oldTextElement) {
+                // حركة الخروج (للأعلى)
+                oldTextElement.classList.remove('animate-in');
+                oldTextElement.classList.add('animate-out');
+
+                // إزالة العنصر القديم بعد انتهاء الحركة (0.5 ثانية)
+                setTimeout(() => {
+                    oldTextElement.remove();
+                }, 500);
+            }
+
+            // حركة الدخول (للأعلى من الأسفل)
+            newTextElement.classList.add('animate-in');
+            rotatingElement.appendChild(newTextElement);
+
+            // 4. تحديث الفهرس للدورة التالية
+            currentTextIndex = (currentTextIndex + 1) % texts.length;
+        }
+
+        // وظيفة بدء الحركة
+        function startRotation() {
+            // تشغيل أول كلمة فوراً
+            rotateText(); 
+            
+            // ضبط المؤقت للدورات اللاحقة
+            intervalId = setInterval(rotateText, rotationInterval);
+        }
+
+        // تهيئة الصفحة
+        document.addEventListener('DOMContentLoaded', () => {
+            if (document.getElementById('rotatingTextDisplay')) {
+                startRotation();
+            }
+        });
+    </script>
 </body>
 </html>
