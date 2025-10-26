@@ -1,6 +1,6 @@
 /* -------------------- I. الخطوط والإعدادات الأساسية -------------------- */
 
-/* إعادة تعريف الخطوط: تأكد أن ملفات الخطوط موجودة في مجلد "fonts" */
+/* تعريف الخطوط: تأكد أن ملفات الخطوط موجودة في مجلد "fonts" بالأسماء المطابقة */
 @font-face {
     font-family: 'Expo-Bold';
     src: url('fonts/Expo-Bold.ttf') format('truetype');
@@ -30,7 +30,7 @@
 
 /* تطبيق الخط الأساسي على كامل الجسم */
 body {
-    font-family: 'Expo-Regular', sans-serif; /* الخط الأساسي */
+    font-family: 'Expo-Regular', sans-serif; 
     background: linear-gradient(135deg, #2a2a72 0%, #009ffd 74%);
     min-height: 100vh;
     display: flex;
@@ -41,7 +41,7 @@ body {
     direction: rtl; 
 }
 
-/* تنسيق الـ Container للصفحات التي تحتوي على الشريط الجانبي */
+/* -------------------- II. حاوية المحتوى (Glassmorphism) -------------------- */
 .container {
     display: flex;
     width: 90%;
@@ -56,7 +56,7 @@ body {
     direction: rtl; 
 }
 
-/* -------------------- II. الشريط الجانبي (Sidebar) -------------------- */
+/* -------------------- III. الشريط الجانبي (Sidebar) -------------------- */
 .sidebar {
     width: var(--sidebar-width);
     height: 100%;
@@ -84,7 +84,7 @@ body {
 }
 
 .logo h2 {
-    font-family: 'Expo-Bold', sans-serif; /* استخدام الخط الثقيل */
+    font-family: 'Expo-Bold', sans-serif; 
     font-size: 20px;
     font-weight: bold; 
     margin-top: 5px;
@@ -179,7 +179,7 @@ body {
     opacity: 0.8;
 }
 
-/* -------------------- III. المحتوى الرئيسي (Content) -------------------- */
+/* -------------------- IV. المحتوى الرئيسي (Content) -------------------- */
 .content {
     flex: 1;
     padding: 40px;
@@ -191,7 +191,7 @@ header {
 }
 
 header h1 {
-    font-family: 'Expo-Bold', sans-serif; /* استخدام الخط الثقيل */
+    font-family: 'Expo-Bold', sans-serif; 
     font-size: 32px;
     font-weight: bold;
     margin-bottom: 8px;
@@ -202,10 +202,10 @@ header p {
     opacity: 0.8;
 }
 
-/* -------------------- IV. المشاريع والبطاقات (Project Cards) -------------------- */
+/* -------------------- V. المشاريع والبطاقات (Project Cards) -------------------- */
 
 .featured-projects h2, .request-form-section h2 {
-    font-family: 'Expo-Bold', sans-serif; /* استخدام الخط الثقيل */
+    font-family: 'Expo-Bold', sans-serif; 
     font-size: 28px;
     font-weight: bold;
     margin-bottom: 20px;
@@ -244,7 +244,7 @@ header p {
 }
 
 .project-card .card-info h3 {
-    font-family: 'Expo-Bold', sans-serif; /* استخدام الخط الثقيل */
+    font-family: 'Expo-Bold', sans-serif; 
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 5px;
@@ -271,7 +271,7 @@ header p {
     background: #004ecc;
 }
 
-/* -------------------- V. نموذج طلب المشروع (Request Form) -------------------- */
+/* -------------------- VI. نموذج طلب المشروع (Request Form) -------------------- */
 .request-form-section {
     margin-top: 40px;
 }
@@ -328,7 +328,7 @@ header p {
 }
 
 .submit-btn {
-    font-family: 'Expo-Bold', sans-serif; /* استخدام الخط الثقيل */
+    font-family: 'Expo-Bold', sans-serif; 
     display: block;
     width: 100%;
     padding: 15px;
@@ -350,7 +350,7 @@ header p {
     transform: scale(0.99);
 }
 
-/* -------------------- VI. تنسيق صفحات المصادقة (Auth Page) -------------------- */
+/* -------------------- VII. تنسيق صفحات المصادقة (Auth Page) -------------------- */
 .auth-body {
     background: linear-gradient(135deg, #2a2a72 0%, #009ffd 74%);
     min-height: 100vh;
@@ -364,10 +364,58 @@ header p {
     perspective: 1500px; 
 }
 
-/* -------------------- VII. تعديلات متجاوبة (Responsive) -------------------- */
-/* ... (كود Responsive) ... */
+/* -------------------- VIII. تعديلات متجاوبة (Responsive) -------------------- */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: var(--sidebar-collapsed-width);
+    }
+    
+    .menu a span {
+        display: none;
+    }
+    
+    .menu a i {
+        margin-left: 0; 
+    }
+    
+    .user-info {
+        display: none;
+    }
+    
+    .profile {
+        justify-content: center;
+    }
+    
+    .avatar {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    
+    .content {
+        padding: 30px;
+    }
+    
+    .card-container {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+    }
+}
 
-/* -------------------- VIII. مؤثر الظهور السلس (Reveal on Scroll CSS) -------------------- */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        height: 90vh;
+    }
+    
+    .sidebar {
+        width: 60px; 
+    }
+    
+    .card-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* -------------------- IX. مؤثر الظهور السلس (Reveal on Scroll CSS) -------------------- */
 
 .hidden-section {
     opacity: 0;
