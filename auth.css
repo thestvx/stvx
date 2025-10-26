@@ -1,6 +1,7 @@
 /*
- * Forest Login Design
+ * Forest Login Design - Blue Theme
  * Created by: TheDoc - Customized for STVX RTL by خبير/ة البرمجة
+ * Blue Theme by خبير/ة البرمجة
  * Crafted with precision and style
  */
 
@@ -27,16 +28,22 @@
 }
 
 :root {
-    --primary-gradient: linear-gradient(135deg, #4a7c23 0%, #2d5016 100%);
-    --secondary-gradient: linear-gradient(135deg, #568d27 0%, #3d6b1f 100%);
-    --success-gradient: linear-gradient(135deg, #7fb069 0%, #4a7c23 100%);
-    --glass-bg: rgba(0, 0, 0, 0.25);
-    --glass-border: rgba(120, 150, 70, 0.4);
-    --text-primary: #ffffff;
-    --text-secondary: rgba(255, 255, 255, 0.9);
-    --input-bg: rgba(0, 0, 0, 0.2);
-    --input-border: rgba(120, 150, 70, 0.5);
-    --shadow: 0 8px 32px rgba(45, 80, 22, 0.4);
+    /* -------------------- متغيرات الألوان الزرقاء الباردة -------------------- */
+    --primary-gradient: linear-gradient(135deg, #4A90E2 0%, #2E73B5 100%); /* أزرق أساسي */
+    --secondary-gradient: linear-gradient(135deg, #5C9CEB 0%, #3F7FC7 100%); /* أزرق ثانوي */
+    --success-gradient: linear-gradient(135deg, #7CBCE2 0%, #4A90E2 100%); /* أزرق للنجاح */
+    
+    --glass-bg: rgba(0, 0, 0, 0.25); /* خلفية زجاجية شفافة */
+    --glass-border: rgba(100, 150, 200, 0.4); /* حدود زجاجية زرقاء فاتحة */
+    
+    --text-primary: #ffffff; /* نص أبيض */
+    --text-secondary: rgba(255, 255, 255, 0.9); /* نص أبيض شبه شفاف */
+    
+    --input-bg: rgba(0, 0, 0, 0.2); /* خلفية حقل الإدخال */
+    --input-border: rgba(100, 150, 200, 0.5); /* حدود حقل الإدخال */
+    
+    --shadow: 0 8px 32px rgba(46, 115, 181, 0.4); /* ظل أزرق */
+    
     --creator: "TheDoc";
     --signature: "TheDoc";
     --watermark: "VGhlRG9j";
@@ -62,12 +69,13 @@ body {
     height: 100%;
     z-index: -1;
     
-    background-image: url('https://img.freepik.com/fotos-kostenlos/wunderschoene-aufnahme-eines-waldes-mit-hohen-gruenen-baeumen_181624-20615.jpg?semt=ais_hybrid&w=740');
+    /* يمكنك تغيير هذه الصورة إلى خلفية زرقاء أو متناسقة مع الأزرق */
+    background-image: url('https://img.freepik.com/fotos-kostenlos/oberflaechenansicht-der-ozeanwellen-bei-sonnenuntergang_23-2149544778.jpg?w=740&t=st=1720899002~exp=1720899602~hmac=6940a08e330a1c1d6368d5045610e6207b53982e5ee6f5825d5ce94ed7474765');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    animation: forestGradient 15s ease infinite;
+    animation: blueOceanGradient 15s ease infinite; /* اسم جديد للأنيميشن */
 }
 
 .background-container::before {
@@ -78,10 +86,10 @@ body {
     width: 100%;
     height: 100%;
     background-image: 
-        radial-gradient(circle at 20% 80%, rgba(120, 150, 70, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(100, 130, 50, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(90, 120, 40, 0.2) 0%, transparent 50%);
-    animation: forestMovement 20s ease-in-out infinite;
+        radial-gradient(circle at 20% 80%, rgba(100, 150, 200, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(80, 130, 180, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(70, 110, 160, 0.2) 0%, transparent 50%);
+    animation: blueMovement 20s ease-in-out infinite; /* اسم جديد للأنيميشن */
 }
 
 .background-overlay {
@@ -93,9 +101,9 @@ body {
     background: linear-gradient(
         45deg,
         rgba(0, 0, 0, 0.5) 0%,
-        rgba(0, 60, 0, 0.35) 25%,
-        rgba(0, 80, 0, 0.25) 50%,
-        rgba(0, 60, 0, 0.35) 75%,
+        rgba(0, 30, 60, 0.35) 25%,
+        rgba(0, 40, 80, 0.25) 50%,
+        rgba(0, 30, 60, 0.35) 75%,
         rgba(0, 0, 0, 0.5) 100%
     );
     backdrop-filter: blur(3px);
@@ -134,19 +142,20 @@ body {
     animation-delay: 3s;
 }
 
-@keyframes forestGradient /* TheDoc's forest magic */ {
-    0% { background-position: 0% 50%; /* TheDoc start */ }
-    50% { background-position: 100% 50%; /* TheDoc middle */ }
-    100% { background-position: 0% 50%; /* TheDoc end */ }
+/* تحديث أسماء keyframes لتجنب التضارب وتحديد اللون الجديد */
+@keyframes blueOceanGradient { /* TheDoc's blue ocean magic */
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
-@keyframes forestMovement /* Animated by TheDoc */ {
+@keyframes blueMovement { /* Animated by TheDoc - blue theme */
     0%, 100% { transform: translateY(0px) rotate(0deg); }
     33% { transform: translateY(-10px) rotate(1deg); }
     66% { transform: translateY(5px) rotate(-1deg); }
 }
 
-@keyframes float /* TheDoc's particles */ {
+@keyframes float { /* TheDoc's particles */
     0%, 100% { transform: translateY(0px) translateX(0px) scale(0); opacity: 0; }
     10% { opacity: 1; scale: 1; }
     90% { opacity: 1; scale: 1; }
@@ -206,7 +215,7 @@ body {
     overflow: hidden;
 }
 
-.toggle-btn /* TheDoc's toggle magic */ {
+.toggle-btn {
     /* تطبيق خط Expo-Bold */
     font-family: 'Expo-Bold', sans-serif; 
     flex: 1;
@@ -229,7 +238,7 @@ body {
 .toggle-btn.active {
     color: var(--text-primary);
     background: var(--primary-gradient);
-    box-shadow: 0 4px 15px rgba(74, 124, 35, 0.5);
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.5); /* ظل أزرق متناسق */
 }
 
 .toggle-btn:hover:not(.active) {
@@ -257,7 +266,7 @@ body {
     margin-bottom: 20px;
 }
 
-.form-header h2 /* TheDoc's gradient text art */ {
+.form-header h2 {
     /* تطبيق خط Expo-Bold */
     font-family: 'Expo-Bold', sans-serif; 
     color: var(--text-primary);
@@ -270,7 +279,7 @@ body {
     background-clip: text;
 }
 
-.form-header p /* TheDoc's subtitle styling */ {
+.form-header p {
     color: var(--text-secondary);
     font-size: 0.95rem;
 }
@@ -323,9 +332,9 @@ body {
 .input-container input:focus {
     outline: none;
     border-color: var(--input-border);
-    background: rgba(120, 150, 70, 0.15);
+    background: rgba(100, 150, 200, 0.15); /* خلفية حقل الإدخال عند التركيز */
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(74, 124, 35, 0.3);
+    box-shadow: 0 8px 25px rgba(74, 144, 226, 0.3); /* ظل أزرق عند التركيز */
 }
 
 .input-icon {
@@ -342,7 +351,7 @@ body {
 
 .input-container input:focus + .input-icon,
 .input-container input:focus ~ .input-icon {
-    color: #4a7c23;
+    color: #4A90E2; /* أيقونة زرقاء عند التركيز */
 }
 
 .input-border {
@@ -453,16 +462,16 @@ body {
 }
 
 .checkbox-container:hover .checkmark {
-    border-color: #4a7c23;
+    border-color: #4A90E2; /* حدود زرقاء عند التحويم */
     transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(74, 124, 35, 0.4);
+    box-shadow: 0 0 15px rgba(74, 144, 226, 0.4); /* ظل أزرق عند التحويم */
 }
 
 .checkbox-container input:checked ~ .checkmark {
-    background: linear-gradient(135deg, #4a7c23 0%, #568d27 50%, #2d5016 100%);
+    background: linear-gradient(135deg, #4A90E2 0%, #5C9CEB 50%, #2E73B5 100%); /* خلفية زرقاء عند التحديد */
     border-color: transparent;
     transform: scale(1);
-    box-shadow: 0 4px 15px rgba(74, 124, 35, 0.5);
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.5); /* ظل أزرق عند التحديد */
     animation: checkboxPulse 0.6s ease;
 }
 
@@ -486,24 +495,24 @@ body {
 }
 
 .checkbox-container a {
-    color: #4a7c23;
+    color: #4A90E2; /* رابط أزرق */
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .checkbox-container a:hover {
-    color: #568d27;
+    color: #5C9CEB; /* رابط أزرق أفتح عند التحويم */
 }
 
 .forgot-password {
-    color: #4a7c23;
+    color: #4A90E2; /* رابط أزرق */
     text-decoration: none;
     font-size: 0.9rem;
     transition: all 0.3s ease;
 }
 
 .forgot-password:hover {
-    color: #568d27;
+    color: #5C9CEB; /* رابط أزرق أفتح عند التحويم */
     text-decoration: underline;
 }
 
@@ -530,7 +539,7 @@ body {
     margin-bottom: 30px;
 }
 
-/* Kompakterer Submit-Button für Register */
+/* Kompaktere Abstände für Register-Form */
 #registerForm .submit-btn {
     margin-bottom: 20px;
     padding: 16px;
@@ -538,7 +547,7 @@ body {
 
 .submit-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(74, 124, 35, 0.5);
+    box-shadow: 0 10px 30px rgba(74, 144, 226, 0.5); /* ظل أزرق عند التحويم */
 }
 
 .submit-btn:active {
@@ -550,7 +559,7 @@ body {
 }
 
 .register-btn:hover {
-    box-shadow: 0 10px 30px rgba(86, 141, 39, 0.5);
+    box-shadow: 0 10px 30px rgba(92, 156, 235, 0.5); /* ظل أزرق عند التحويم */
 }
 
 /* Social Login */
@@ -614,8 +623,9 @@ body {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
+/* ألوان الأيقونات الاجتماعية الأصلية (يمكن تغييرها إذا أردت) */
 .social-btn.google:hover {
-    background: #db4437;
+    background: #db4437; 
 }
 
 .social-btn.facebook:hover {
@@ -667,7 +677,7 @@ body {
 
 .success-content i {
     font-size: 4rem;
-    color: #7fb069;
+    color: #7CBCE2; /* لون أيقونة النجاح الأزرق */
     margin-bottom: 20px;
     animation: checkmark 0.6s ease;
 }
