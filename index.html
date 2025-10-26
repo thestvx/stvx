@@ -3,91 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STVX | الرئيسية</title>
-    <link rel="stylesheet" href="style.css"> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title> STVX | مصمم مواقع وجرافيكس ديزاينر </title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="container"> 
+
+    <header class="header">
+        <div class="logo">
+            <a href="#">
+                <img src="images/STVX-LOGO.png" alt="شعار STVX" class="stv-logo">
+            </a>
+        </div>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="#hero" class="active">الرئيسية</a></li>
+                <li><a href="#portfolio">الأعمال</a></li>
+                <li><a href="#services">الخدمات</a></li>
+                <li><a href="#contact">تواصل</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <a href="auth.html">تسجيل الدخول</a>
+        </div>
+    </header>
+
+    <section class="hero-section" id="hero">
+        <div class="hero-content">
+            <h1>أهلاً بك في STVX، المصمم الذي تبحث عنه.</h1>
+            <p>تصميم مواقع عصرية، واجهات مستخدم جذابة، وحلول إبداعية للجرافيكس.</p>
+            <a href="#portfolio" class="cta-button">شاهد أعمالي المميزة</a>
+        </div>
+    </section>
+
+    <section class="portfolio" id="portfolio">
+        <h2 class="section-title">أعمال مختارة</h2>
         
-        <aside class="sidebar">
-            <div class="logo">
-                <i class="fas fa-cube"></i>
-                <h2>STVX</h2>
-            </div>
-            <nav class="menu">
-                <ul>
-                    <li class="active"><a href="index.html"><i class="fas fa-home"></i> <span>الرئيسية</span></a></li>
-                    <li><a href="projects.html"><i class="fas fa-project-diagram"></i> <span>معرض المشاريع</span></a></li>
-                    <li><a href="request.html"><i class="fas fa-file-contract"></i> <span>طلب خدمة</span></a></li>
-                    <li><a href="auth.html"><i class="fas fa-sign-in-alt"></i> <span>تسجيل الدخول</span></a></li>
-                </ul>
-            </nav>
-            <div class="profile">
-                <div class="avatar">
-                    <img src="your-profile-image.jpg" alt="Profile">
-                </div>
-                <div class="user-info">
-                    <h3>أهلاً بك!</h3>
-                    <p>زائر</p>
-                </div>
-            </div>
-        </aside>
-
-        <main class="content" id="home">
-            <header class="hidden-section">
-                <h1>مرحباً بك في STVX!</h1>
-                <p>منصتك الرائدة لخدمات تصميم وتطوير الويب.</p>
-            </header>
-
-            <section class="card-container hidden-section">
-                <div class="card">
-                    <div class="card-icon"><i class="fas fa-rocket"></i></div>
-                    <div class="card-info">
-                        <h3>100+</h3>
-                        <p>مشروع تم إنجازه</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-icon"><i class="fas fa-code"></i></div>
-                    <div class="card-info">
-                        <h3>خبرة</h3>
-                        <p>5 سنوات في المجال</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-icon"><i class="fas fa-user-tie"></i></div>
-                    <div class="card-info">
-                        <h3>10+</h3>
-                        <p>مطور ومصمم</p>
-                    </div>
-                </div>
-            </section>
+        <div class="portfolio-grid">
             
-            <section class="featured-projects hidden-section">
-                <h2>أبرز مشاريعنا</h2>
-                <div class="card-container">
-                    <div class="card project-card">
-                        <img src="project-1-placeholder.jpg" alt="مشروع ويب متكامل">
-                        <div class="card-info">
-                            <h3>تطبيق إدارة محتوى</h3>
-                            <p>نظام CMS متكامل مبني باستخدام React و Node.js.</p>
-                            <a href="projects.html#p1" class="view-btn">عرض التفاصيل</a>
-                        </div>
-                    </div>
-                    <div class="card project-card">
-                        <img src="project-2-placeholder.jpg" alt="متجر إلكتروني">
-                        <div class="card-info">
-                            <h3>متجر إلكتروني</h3>
-                            <p>منصة تجارة إلكترونية سريعة وموثوقة.</p>
-                            <a href="projects.html#p2" class="view-btn">عرض التفاصيل</a>
-                        </div>
-                    </div>
+            <a href="#" class="work-item">
+                <img src="images/web-design-sample.jpg" alt="تصميم موقع إلكتروني">
+                <div class="work-overlay">
+                    <h3>تصميم موقع تجارة إلكترونية</h3>
+                    <p>تصميم مواقع</p>
                 </div>
-            </section>
-        </main>
-    </div>
+            </a>
+            
+            <a href="#" class="work-item">
+                <img src="images/graphic-sample-2.jpg" alt="تصميم هوية بصرية">
+                <div class="work-overlay">
+                    <h3>هوية بصرية كاملة لشركة</h3>
+                    <p>جرافيكس ديزاين</p>
+                </div>
+            </a>
 
-    <script src="script.js"></script>
+            <a href="#" class="work-item">
+                <img src="images/ui-ux-sample.jpg" alt="تصميم واجهات تطبيقات">
+                <div class="work-overlay">
+                    <h3>واجهة تطبيق (UI/UX)</h3>
+                    <p>واجهات مستخدم</p>
+                </div>
+            </a>
+            
+            </div>
+    </section>
+
+    <section class="services-section" id="services">
+        <h2 class="section-title">خدماتي الاحترافية</h2>
+        <div class="service-cards">
+            <div class="service-card">
+                <i class="fas fa-desktop"></i>
+                <h4>تطوير المواقع الأمامية (Frontend)</h4>
+                <p>بناء مواقع سريعة ومتجاوبة باستخدام أحدث تقنيات HTML, CSS, JavaScript.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-palette"></i>
+                <h4>الجرافيكس والهوية البصرية</h4>
+                <p>تصميم شعارات، مطبوعات، وأصول رقمية متكاملة تعكس علامتك التجارية.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-layer-group"></i>
+                <h4>تصميم UI/UX</h4>
+                <p>تحويل الأفكار إلى واجهات مستخدم بديهية وتجارب مستخدم ممتعة وفعالة.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer" id="contact">
+        <div class="footer-content">
+            <ul class="social-links">
+                <li><a href="#"><i class="fab fa-behance"></i></a></li>
+                <li><a href="#"><i class="fab fa-dribbble"></i></a></li>
+                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+            </ul>
+            <p>&copy; 2024 STVX. جميع الحقوق محفوظة. تصميم بلمسة Fashion Nova.</p>
+        </div>
+    </footer>
+
 </body>
 </html>
