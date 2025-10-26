@@ -40,7 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // II. تأثير الحركة ثلاثية الأبعاد (3D Tilt Effect)
     // ----------------------------------------------------
     
-    // استهداف جميع النماذج التي تحتاج الحركة
     const tiltCards = [loginForm, registerForm, recoveryCard];
 
     tiltCards.forEach(card => {
@@ -90,7 +89,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 initialRotationY = 180;
             }
 
-            // العودة بسلاسة للوضعية الأصلية
             card.style.transform = `
                 perspective(1000px)
                 rotateX(0deg)
@@ -119,11 +117,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // III. معالجة نماذج المصادقة (لربط Firebase)
     // ----------------------------------------------------
     
-    // ملاحظة: وظائف Firebase سيتم إضافتها هنا في ملف firebase-auth.js
     document.getElementById('loginForm')?.addEventListener('submit', function(e) {
         e.preventDefault();
         console.log('محاولة تسجيل الدخول...');
-        // يمكنك إضافة كود ربط Firebase هنا
     });
 
     document.getElementById('registerForm')?.addEventListener('submit', function(e) {
@@ -137,6 +133,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         console.log('محاولة تسجيل جديد...');
-        // يمكنك إضافة كود ربط Firebase هنا
     });
 });
