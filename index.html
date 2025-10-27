@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>STVX Portfolio | تصميم الواجهات والثيم الزجاجي</title>
     
-    <link rel="stylesheet" href="auth.css"> 
-    
     <script src="https://cdn.tailwindcss.com/3.4.16"></script> 
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,7 +27,6 @@
                         sans: ['Cairo', 'sans-serif'],
                         logo: ['Pacifico', 'cursive'],
                     },
-                    // تعريفات الأنيميشن (للحركة السلسة) 
                     animation: {
                         'fade-in': 'fadeIn 0.6s ease-out forwards',
                         'slide-down': 'slideDown 0.5s ease-out forwards',
@@ -46,7 +43,6 @@
     </script>
     
     <style>
-        /* قاعدة Glassmorphism الأساسية */
         .glass-card {
             background-color: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(12px);
@@ -56,11 +52,10 @@
             transition: all 0.3s ease;
         }
 
-        /* أنيميشن التفاعل (Hover Animation) */
         .glass-card:hover {
-            border-color: #ffc72c; /* تمييز الحدود بالذهبي عند التمرير */
+            border-color: #ffc72c; 
             box-shadow: 0 0 10px rgba(255, 199, 44, 0.3), 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-            transform: translateY(-2px); /* تأثير ارتفاع خفيف */
+            transform: translateY(-2px); 
         }
         
         .dark-bg {
@@ -73,7 +68,6 @@
             transform: scale(1.05);
         }
         
-        /* إخفاء مبدئي للعناصر قبل تحميل الأنيميشن */
         .animate-on-load {
             opacity: 0;
         }
@@ -86,7 +80,6 @@
         <div class="flex items-center justify-between">
             <div class="flex items-center space-x-8 rtl:space-x-reverse">
                 <div class="flex items-center space-x-3 rtl:space-x-reverse">
-                    <img src="images/stvx-logo.png" alt="STVX Logo" class="w-8 h-8 object-contain"> 
                     <span class="text-xl font-logo text-primary">STVX</span>
                 </div>
                 <div class="relative hidden lg:block">
@@ -104,7 +97,6 @@
                 <a href="auth.html" class="bg-primary hover:bg-primary/90 text-black px-4 py-2 rounded-full font-bold text-sm transition-colors whitespace-nowrap">
                     تسجيل الدخول
                 </a>
-                
                 <div class="flex items-center space-x-3 rtl:space-x-reverse hidden md:flex">
                     <img src="https://readdy.ai/api/search-image?query=Professional%20UI%2FUX%20designer%20avatar%20portrait%2C%20modern%20style%2C%20dark%20background%2C%20high%20quality%20headshot&width=40&height=40&seq=user1&orientation=squarish" 
                          alt="Profil" class="w-10 h-10 rounded-full object-cover border-2 border-primary">
@@ -117,7 +109,7 @@
     <div class="flex pt-28 md:pt-20">
         <aside class="w-64 glass-card fixed right-0 top-24 bottom-24 overflow-y-auto sidebar-scroll hidden lg:block animate-on-load"
                style="animation: slideUp 0.7s ease-out 0.3s forwards;">
-            <div class="p-6 space-y-6">
+             <div class="p-6 space-y-6">
                 <div class="space-y-2">
                     <div class="flex items-center space-x-3 rtl:space-x-reverse px-3 py-2 rounded-lg bg-primary/20 text-primary transition-all glass-button-hover">
                         <div class="w-5 h-5 flex items-center justify-center"><i class="ri-home-5-line"></i></div>
@@ -255,7 +247,7 @@
                     </div>
                 </div>
             </section>
-            
+
             <section class="mb-8 animate-on-load" style="animation: fadeIn 0.8s ease-out 1.6s forwards;">
                 <div class="flex items-center justify-between mb-6">
                     <h2 class="text-2xl font-bold text-white">خدماتنا المميزة</h2>
@@ -329,7 +321,5 @@
         </div>
     </footer>
     
-    <script src="auth.js"></script>
-    
-</body>
+    </body>
 </html>
